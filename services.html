@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Venus Eyes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li class="has-submenu">
+            <a href="artwork.html">Artwork</a>
+            <ul class="submenu">
+              <li><a href="artwork.html#photography">Photography</a></li>
+              <li><a href="artwork.html#oil-paints">Oil Paints</a></li>
+              <li><a href="artwork.html#short-stories">Short Stories</a></li>
+            </ul>
+          </li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-page">
+    <section class="content-panel">
+      <h1>Services</h1>
+      <p>Share what services you offer (e.g., photography sessions, video editing, commissioned work).</p>
+      <p>This page is ready for you to add packages, rates, or any details you want clients to see.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Venus Eyes — built with Cloudflare Pages.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

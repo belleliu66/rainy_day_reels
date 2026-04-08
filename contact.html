@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Venus Eyes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li class="has-submenu">
+            <a href="artwork.html">Artwork</a>
+            <ul class="submenu">
+              <li><a href="artwork.html#photography">Photography</a></li>
+              <li><a href="artwork.html#oil-paints">Oil Paints</a></li>
+              <li><a href="artwork.html#short-stories">Short Stories</a></li>
+            </ul>
+          </li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-page">
+    <section class="content-panel">
+      <h1>Contact</h1>
+      <p>Let people know how to reach you. You can add email, social links, or a contact form here (via a 3rd-party form service if you like).</p>
+      <ul>
+        <li>Email: <a href="mailto:hello@example.com">hello@example.com</a></li>
+        <li>Instagram: <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Venus Eyes — built with Cloudflare Pages.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

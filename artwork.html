@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artwork — Venus Eyes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li class="has-submenu">
+            <a href="artwork.html">Artwork</a>
+            <ul class="submenu">
+              <li><a href="#photography">Photography</a></li>
+              <li><a href="#oil-paints">Oil Paints</a></li>
+              <li><a href="#short-stories">Short Stories</a></li>
+            </ul>
+          </li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-page">
+    <section id="photography" class="content-panel">
+      <h1>Photography</h1>
+      <p>Showcase your favorite photos here. Replace this with a gallery or a grid of thumbnails linked to full-size images.</p>
+    </section>
+
+    <section id="oil-paints" class="content-panel">
+      <h1>Oil Paints</h1>
+      <p>Present your painting work in a clean layout. Add images, process notes, or stories about each piece.</p>
+    </section>
+
+    <section id="short-stories" class="content-panel">
+      <h1>Short Stories</h1>
+      <p>If you write short stories, this is the place to link to them or embed excerpts.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Venus Eyes — built with Cloudflare Pages.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

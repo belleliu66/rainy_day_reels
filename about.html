@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me — Venus Eyes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li class="has-submenu">
+            <a href="artwork.html">Artwork</a>
+            <ul class="submenu">
+              <li><a href="artwork.html#photography">Photography</a></li>
+              <li><a href="artwork.html#oil-paints">Oil Paints</a></li>
+              <li><a href="artwork.html#short-stories">Short Stories</a></li>
+            </ul>
+          </li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-page">
+    <section class="content-panel">
+      <h1>About Me</h1>
+      <p>Welcome! I’m the creative behind Venus Eyes. I’m a visual storyteller working with photos, video, and mixed media.</p>
+      <p>Replace this text with your bio, mission statement, or any details you want visitors to see. Keep it concise and authentic.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Venus Eyes — built with Cloudflare Pages.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

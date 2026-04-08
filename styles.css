@@ -311,6 +311,177 @@ a:hover {
   box-shadow: 0 20px 65px rgba(0, 0, 0, 0.55);
 }
 
+/* ====== ABOUT SECTION — split layout (index.html scroll section) ====== */
+.banner--about .banner__overlay.about-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  width: min(92vw, 1200px);
+  text-align: left;
+  padding: 6rem 1.5rem;
+}
+
+.about-text {
+  flex: 1;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.about-text h2 {
+  margin: 0;
+  font-family: 'Indonesian', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+.about-text p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 560px;
+}
+
+.about-cta a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: opacity 200ms ease;
+}
+
+.about-cta a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+/* Profile photo — fills vertical space, slides in from right */
+.about-photo-wrap {
+  flex-shrink: 0;
+  width: clamp(180px, 24vw, 340px);
+  align-self: stretch;
+  overflow: hidden;
+  border-radius: var(--radius);
+  opacity: 0;
+  transform: translateX(70px);
+  transition: opacity 0.9s ease 0.25s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.25s;
+}
+
+.banner.is-visible .about-photo-wrap {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  min-height: 420px;
+}
+
+/* ====== ABOUT PAGE — standalone about.html ====== */
+.content-page {
+  min-height: 100vh;
+  padding: 7rem 1.5rem 4rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.about-page-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  width: min(92vw, 1100px);
+}
+
+.about-page-text {
+  flex: 1;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.about-page-text h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  color: var(--text);
+  letter-spacing: 0.06em;
+}
+
+.about-page-text p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+.about-page-text a {
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: opacity 200ms ease;
+}
+
+.about-page-text a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+/* Profile photo column — 4:6 portrait */
+.about-page-photo {
+  flex-shrink: 0;
+  width: clamp(200px, 28vw, 360px);
+  /* 4:6 = 2:3 aspect ratio */
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(70px);
+  transition: opacity 0.9s ease 0.2s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.about-page-photo.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-page-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+@media (max-width: 680px) {
+  .banner--about .banner__overlay.about-split {
+    flex-direction: column;
+    padding: 5rem 1.5rem;
+  }
+
+  .about-photo-wrap {
+    width: 60vw;
+    align-self: center;
+    min-height: 240px;
+  }
+
+  .about-page-layout {
+    flex-direction: column;
+  }
+
+  .about-page-photo {
+    width: 60vw;
+    align-self: center;
+  }
+}
+
 /* ====== VIDEO CAROUSEL ====== */
 .carousel-hero {
   position: relative;

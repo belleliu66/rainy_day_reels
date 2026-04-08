@@ -32,10 +32,18 @@
   </header>
 
   <main class="content-page">
-    <section class="content-panel">
-      <h1>About Me</h1>
-      <p>Welcome! I’m the creative behind Venus Eyes. I’m a visual storyteller working with photos, video, and mixed media.</p>
-      <p>Replace this text with your bio, mission statement, or any details you want visitors to see. Keep it concise and authentic.</p>
+    <section class="about-page-layout">
+      <div class="about-page-text">
+        <h1>About Me</h1>
+        <p>My name is [Your Name]. I'm a visual storyteller and artist based in [City].</p>
+        <p>I work across photography, short film, and mixed media — drawn to the quiet drama of everyday life, the way light shifts, and the stories people carry without knowing it.</p>
+        <p>My practice began with a disposable camera and a habit of noticing things others walked past. It has since grown into [describe your work, exhibitions, clients, or style].</p>
+        <p>When I'm not shooting, I'm [writing / painting / travelling / listening to records / etc.]. I believe every moment has a frame worth keeping.</p>
+        <p><a href="contact.html">Get in touch →</a></p>
+      </div>
+      <div class="about-page-photo">
+        <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/profile-placeholder.svg" alt="Profile photo" />
+      </div>
     </section>
   </main>
 
@@ -45,6 +53,16 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade profile photo in from the right when it enters the viewport
+    const photoEl = document.querySelector('.about-page-photo');
+    if (photoEl) {
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) { photoEl.classList.add('is-visible'); obs.disconnect(); } },
+        { threshold: 0.15 }
+      );
+      obs.observe(photoEl);
+    }
   </script>
 </body>
 </html>

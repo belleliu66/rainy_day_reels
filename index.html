@@ -32,15 +32,39 @@
   </header>
 
   <main class="site-main">
-    <section class="banner banner--hero" id="home">
-      <div class="banner__bg">
-        <video class="banner__media" autoplay muted loop playsinline poster="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/hero-poster.png">
-          <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/hero-video.mp4" type="video/mp4" />
-          <!-- Fallback: keep an image background if video fails -->
-        </video>
+    <!-- Video Carousel Hero Section -->
+    <section class="carousel-hero" id="home">
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <!-- Carousel items with videos or photos -->
+          <!-- Replace these src URLs with your actual video/photo URLs -->
+          <div class="carousel-item carousel-item--active" data-type="video">
+            <video class="carousel-media" muted playsinline>
+              <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/hero-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="carousel-item" data-type="video">
+            <video class="carousel-media" muted playsinline>
+              <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/hero-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="carousel-item" data-type="photo">
+            <img class="carousel-media" src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/about-bg.png" alt="Carousel item" />
+          </div>
+        </div>
+
+        <!-- Carousel indicators -->
+        <div class="carousel-indicators">
+          <button class="carousel-indicator carousel-indicator--active" aria-label="Go to item 1" data-index="0"></button>
+          <button class="carousel-indicator" aria-label="Go to item 2" data-index="1"></button>
+          <button class="carousel-indicator" aria-label="Go to item 3" data-index="2"></button>
+        </div>
       </div>
-      <div class="banner__overlay">
-        <h1 class="site-title">Venu<span class="alt-letter">s</span> Eye<span class="alt-letter">s</span> Ar<span class="alt-letter">t</span></h1>
+
+      <!-- Overlay content -->
+      <div class="carousel-overlay">
+        <h1 class="site-title">Rainy Day Reels</h1>
+        <p class="carousel-subtitle">Short moments, timeless art</p>
       </div>
     </section>
 
@@ -88,7 +112,112 @@
   <script>
     // Keep the footer year up to date
     document.getElementById('year').textContent = new Date().getFullYear();
-    
+
+    // ====== VIDEO CAROUSEL LOGIC ======
+    class VideoCarousel {
+      constructor() {
+        this.container = document.querySelector('.carousel-container');
+        this.items = document.querySelectorAll('.carousel-item');
+        this.indicators = document.querySelectorAll('.carousel-indicator');
+        this.currentIndex = 0;
+        this.isHovering = false;
+        this.autoAdvanceTimeout = null;
+
+        this.init();
+      }
+
+      init() {
+        // Set up indicator click handlers
+        this.indicators.forEach(indicator => {
+          indicator.addEventListener('click', (e) => {
+            this.go(parseInt(e.target.dataset.index));
+          });
+        });
+
+        // Set up hover tracking
+        this.container.addEventListener('mouseenter', () => {
+          this.isHovering = true;
+          this.pauseAutoAdvance();
+        });
+
+        this.container.addEventListener('mouseleave', () => {
+          this.isHovering = false;
+          this.startAutoAdvance();
+        });
+
+        // Start the carousel
+        this.startAutoAdvance();
+      }
+
+      go(index) {
+        // Clamp index to valid range
+        index = index % this.items.length;
+
+        // Stop any pending auto-advance
+        this.pauseAutoAdvance();
+
+        // Update active states
+        this.items.forEach(item => item.classList.remove('carousel-item--active'));
+        this.indicators.forEach(ind => ind.classList.remove('carousel-indicator--active'));
+
+        this.items[index].classList.add('carousel-item--active');
+        this.indicators[index].classList.add('carousel-indicator--active');
+
+        // Stop all videos in non-active items
+        this.items.forEach((item, i) => {
+          const media = item.querySelector('.carousel-media');
+          if (media && media.tagName === 'VIDEO') {
+            if (i !== index) {
+              media.pause();
+              media.currentTime = 0;
+            }
+          }
+        });
+
+        // Play the new active video and set up end listener
+        const activeMedia = this.items[index].querySelector('.carousel-media');
+        if (activeMedia && activeMedia.tagName === 'VIDEO') {
+          activeMedia.currentTime = 0;
+          activeMedia.play();
+          activeMedia.onended = () => this.advanceIfNotHovering();
+        }
+
+        this.currentIndex = index;
+
+        // If not hovering, set auto-advance timer
+        if (!this.isHovering) {
+          this.startAutoAdvance();
+        }
+      }
+
+      advanceIfNotHovering() {
+        if (!this.isHovering) {
+          this.next();
+        }
+      }
+
+      next() {
+        this.go(this.currentIndex + 1);
+      }
+
+      startAutoAdvance() {
+        // No automatic advance on timer; it advances only when video ends
+        // This method is here for consistency
+      }
+
+      pauseAutoAdvance() {
+        if (this.autoAdvanceTimeout) {
+          clearTimeout(this.autoAdvanceTimeout);
+          this.autoAdvanceTimeout = null;
+        }
+      }
+    }
+
+    // Initialize carousel when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      new VideoCarousel();
+    });
+
     // Fade banners in as they scroll into view
     const banners = document.querySelectorAll('.banner');
     const observer = new IntersectionObserver(
@@ -101,27 +230,6 @@
     );
 
     banners.forEach((banner) => observer.observe(banner));
-
-    // Video ping-pong loop: forward -> reverse -> forward -> ...
-    const video = document.querySelector('.banner__media');
-    if (video) {
-      let direction = 1; // 1 for forward, -1 for reverse
-      video.addEventListener('ended', () => {
-        direction = -direction;
-        video.playbackRate = direction;
-        video.play();
-      });
-      video.addEventListener('timeupdate', () => {
-        if (direction === -1 && video.currentTime <= 0.1) {
-          direction = 1;
-          video.playbackRate = 1;
-          video.currentTime = 0;
-          video.play();
-        }
-      });
-      // Start with forward
-      video.playbackRate = 1;
-    }
   </script>
   </body>
 </html>

@@ -37,7 +37,7 @@
       <div class="carousel-container">
         <div class="carousel-track">
           <!-- Carousel items with videos or photos -->
-          <div class="carousel-item carousel-item--active" data-type="video">
+          <div class="carousel-item carousel-item--active" data-type="video" data-duration-ms="5000">
             <video class="carousel-media" muted playsinline>
               <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/hero-video.mp4" type="video/mp4" />
             </video>
@@ -118,7 +118,7 @@
         this.indicators = document.querySelectorAll('.carousel-indicator');
         this.currentIndex = 0;
         this.isHovering = false;
-        this.photoAdvanceTimeout = null;
+        this.slideAdvanceTimeout = null;
         this.photoDurationMs = 5000;
 
         this.init();
@@ -135,9 +135,11 @@
         // Set up hover tracking
         this.container.addEventListener('mouseenter', () => {
           this.isHovering = true;
+          this.pauseAutoAdvance();
           const activeMedia = this.items[this.currentIndex]?.querySelector('.carousel-media');
           if (activeMedia && activeMedia.tagName === 'VIDEO') {
             activeMedia.loop = true;
+            activeMedia.onended = null;
             activeMedia.play().catch(() => {});
           }
         });
@@ -147,7 +149,9 @@
           const activeMedia = this.items[this.currentIndex]?.querySelector('.carousel-media');
           if (activeMedia && activeMedia.tagName === 'VIDEO') {
             activeMedia.loop = false;
+            activeMedia.onended = () => this.advanceIfNotHovering();
           }
+          this.scheduleTimedAdvance(this.items[this.currentIndex]);
         });
 
         // Start with the first item
@@ -190,10 +194,9 @@
             activeMedia.onended = () => this.advanceIfNotHovering();
           }
           activeMedia.play().catch(() => {});
-        } else {
-          // Photos advance after a fixed duration.
-          this.photoAdvanceTimeout = setTimeout(() => this.next(), this.photoDurationMs);
         }
+
+        this.scheduleTimedAdvance(this.items[index]);
 
         this.currentIndex = index;
       }
@@ -208,10 +211,26 @@
         this.go(this.currentIndex + 1);
       }
 
+      scheduleTimedAdvance(item) {
+        if (this.isHovering) {
+          return;
+        }
+
+        const customDuration = Number(item?.dataset?.durationMs);
+        const isPhoto = item?.dataset?.type === 'photo';
+        const duration = Number.isFinite(customDuration) && customDuration > 0
+          ? customDuration
+          : (isPhoto ? this.photoDurationMs : 0);
+
+        if (duration > 0) {
+          this.slideAdvanceTimeout = setTimeout(() => this.next(), duration);
+        }
+      }
+
       pauseAutoAdvance() {
-        if (this.photoAdvanceTimeout) {
-          clearTimeout(this.photoAdvanceTimeout);
-          this.photoAdvanceTimeout = null;
+        if (this.slideAdvanceTimeout) {
+          clearTimeout(this.slideAdvanceTimeout);
+          this.slideAdvanceTimeout = null;
         }
       }
     }

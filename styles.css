@@ -457,6 +457,14 @@ a:hover {
   max-width: 560px;
 }
 
+.about-page-text .about-draft-note {
+  padding: 0.7rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
 .about-page-text a {
   color: var(--text);
   font-weight: 600;

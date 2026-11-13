@@ -2,7 +2,7 @@
 
 A full-screen banner scroll portfolio template hosted on **Cloudflare Pages** with media served from **Cloudflare R2** (free tier).
 
-## 📦 What’s Included
+## 📦 What's Included
 - `index.html`: full-screen banner layout with hover menu and scroll sections
 - `styles.css`: styling for banners, menu, and animations
 - `about.html`, `artwork.html`, `services.html`, `contact.html`: linked pages

@@ -237,6 +237,7 @@ a:hover {
 .banner__overlay h1 {
   font-size: clamp(3.4rem, 7vw, 6.2rem);
   color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
 }
 
 .banner__overlay h2 {

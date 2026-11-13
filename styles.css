@@ -363,15 +363,18 @@ a:hover {
 
 .content-page.gallery-page {
   display: block;
+  height: 100vh;
+  overflow-y: auto;
   padding: 7rem 0 3rem;
   background: #f5f1ea;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .gallery-shell {
   width: min(92vw, 1200px);
   margin: 0 auto;
   padding-bottom: 3rem;
-  scroll-snap-type: y proximity;
 }
 
 .gallery-header {
@@ -408,6 +411,7 @@ a:hover {
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  scroll-margin-top: 1rem;
 }
 
 .gallery-section__label {

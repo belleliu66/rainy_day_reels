@@ -135,7 +135,6 @@
         this.items = document.querySelectorAll('.carousel-item');
         this.indicators = document.querySelectorAll('.carousel-indicator');
         this.currentIndex = 0;
-        this.isHovering = false;
         this.slideAdvanceTimeout = null;
         this.photoDurationMs = 5000;
 
@@ -143,58 +142,30 @@
       }
 
       init() {
-        // Set up indicator click handlers
         this.indicators.forEach(indicator => {
           indicator.addEventListener('click', (e) => {
             this.go(parseInt(e.target.dataset.index));
           });
         });
 
-        // Set up hover tracking
-        this.container.addEventListener('mouseenter', () => {
-          this.isHovering = true;
-          this.pauseAutoAdvance();
-          const activeMedia = this.items[this.currentIndex]?.querySelector('.carousel-media');
-          if (activeMedia && activeMedia.tagName === 'VIDEO') {
-            activeMedia.loop = true;
-            activeMedia.onended = null;
-            activeMedia.play().catch(() => {});
-          }
-        });
-
-        this.container.addEventListener('mouseleave', () => {
-          this.isHovering = false;
-          const activeMedia = this.items[this.currentIndex]?.querySelector('.carousel-media');
-          if (activeMedia && activeMedia.tagName === 'VIDEO') {
-            activeMedia.loop = false;
-            activeMedia.onended = () => this.advanceIfNotHovering();
-          }
-          this.scheduleTimedAdvance(this.items[this.currentIndex]);
-        });
-
-        // Start with the first item
         this.go(0);
       }
 
       go(index) {
-        // Clamp index to valid range and handle negatives.
         index = ((index % this.items.length) + this.items.length) % this.items.length;
 
-        // Stop any pending photo auto-advance.
         this.pauseAutoAdvance();
 
-        // Update active states
         this.items.forEach(item => item.classList.remove('carousel-item--active'));
         this.indicators.forEach(ind => ind.classList.remove('carousel-indicator--active'));
 
         this.items[index].classList.add('carousel-item--active');
         this.indicators[index].classList.add('carousel-indicator--active');
 
-        // Stop all videos in non-active items
         this.items.forEach((item, i) => {
           const media = item.querySelector('.carousel-media');
           if (media && media.tagName === 'VIDEO') {
-            media.loop = false;
+            media.loop = true;
             media.onended = null;
             if (i !== index) {
               media.pause();
@@ -203,15 +174,12 @@
           }
         });
 
-        // Configure behavior based on media type.
         const activeMedia = this.items[index].querySelector('.carousel-media');
         if (activeMedia && activeMedia.tagName === 'VIDEO') {
           activeMedia.muted = true;
           activeMedia.playsInline = true;
-          activeMedia.loop = this.isHovering;
-          if (!this.isHovering) {
-            activeMedia.onended = () => this.advanceIfNotHovering();
-          }
+          activeMedia.loop = true;
+          activeMedia.onended = () => this.next();
           const startVideo = () => {
             activeMedia.muted = true;
             activeMedia.play().catch(() => {});
@@ -224,14 +192,7 @@
         }
 
         this.scheduleTimedAdvance(this.items[index]);
-
         this.currentIndex = index;
-      }
-
-      advanceIfNotHovering() {
-        if (!this.isHovering) {
-          this.next();
-        }
       }
 
       next() {
@@ -239,10 +200,6 @@
       }
 
       scheduleTimedAdvance(item) {
-        if (this.isHovering) {
-          return;
-        }
-
         const customDuration = Number(item?.dataset?.durationMs);
         const isPhoto = item?.dataset?.type === 'photo';
         const duration = Number.isFinite(customDuration) && customDuration > 0

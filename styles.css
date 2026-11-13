@@ -692,16 +692,17 @@ a:hover {
 
 .carousel-overlay .site-title {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: 'FrenchAlt', 'French', cursive;
   letter-spacing: 0.01em;
   text-transform: none;
-  font-size: clamp(2.4rem, 14vw, 12.4rem);
+  font-size: clamp(2.4rem, 13vw, 11rem);
   white-space: nowrap;
   flex: 0 0 max-content;
-  color: rgba(255, 255, 255, 0.98);
+  color: rgba(255, 255, 255, 0.96);
   text-shadow: none;
-  line-height: 0.9;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.08));
+  line-height: 0.82;
+  filter: none;
+  -webkit-text-stroke: 0.35px rgba(255, 255, 255, 0.18);
 }
 
 .site-footer {

@@ -17,6 +17,10 @@
 
 :root {
   --bg: #05060a;
+  --page-bg: #f3efe8;
+  --page-panel: rgba(255, 255, 255, 0.5);
+  --page-text: #1f1b17;
+  --page-muted: rgba(31, 27, 23, 0.72);
   --text: #f4f4f8;
   --muted: rgba(244, 244, 248, 0.75);
   --accent: #3b82f6;
@@ -422,37 +426,73 @@ a:hover {
 /* ====== ABOUT PAGE — standalone about.html ====== */
 .content-page {
   min-height: 100vh;
-  padding: 7rem 1.5rem 4rem;
+  padding: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
+  background: var(--page-bg);
+  color: var(--page-text);
+}
+
+.content-panel {
+  width: min(92vw, 920px);
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius);
+  background: var(--page-panel);
+  border: 1px solid rgba(31, 27, 23, 0.08);
+  box-shadow: 0 18px 45px rgba(25, 21, 17, 0.08);
+  color: var(--page-text);
+}
+
+.content-panel h1,
+.about-page-text h1,
+.content-panel p,
+.content-panel li,
+.about-page-text p,
+.about-page-text .about-draft-note,
+.about-page-text a {
+  font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+}
+
+.content-panel h1,
+.about-page-text h1 {
+  color: var(--page-text);
+}
+
+.content-panel p,
+.content-panel li,
+.about-page-text p,
+.about-page-text .about-draft-note {
+  color: var(--page-muted);
 }
 
 .about-page-layout {
   display: flex;
-  align-items: flex-start;
-  gap: 4rem;
-  width: min(92vw, 1100px);
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  min-height: calc(100vh - 80px);
 }
 
 .about-page-text {
-  flex: 1;
+  flex: 1 1 48%;
   display: grid;
   gap: 1.2rem;
+  padding: 3.5rem 3rem 2rem 3rem;
+  box-sizing: border-box;
 }
 
 .about-page-text h1 {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
   font-size: clamp(2.8rem, 5vw, 4.2rem);
-  color: var(--text);
   letter-spacing: 0.06em;
 }
 
 .about-page-text p {
   margin: 0;
   font-size: 1.05rem;
-  color: var(--muted);
+  color: var(--page-muted);
   line-height: 1.8;
   max-width: 560px;
 }
@@ -460,13 +500,13 @@ a:hover {
 .about-page-text .about-draft-note {
   padding: 0.7rem 0.85rem;
   border-left: 3px solid var(--accent);
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--text);
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--page-text);
   font-size: 0.9rem;
 }
 
 .about-page-text a {
-  color: var(--text);
+  color: var(--page-text);
   font-weight: 600;
   letter-spacing: 0.03em;
   transition: opacity 200ms ease;
@@ -477,16 +517,18 @@ a:hover {
   text-decoration: none;
 }
 
-/* Profile photo column — 4:6 portrait */
+/* Portrait flush to the right edge with no top/right/bottom margins */
 .about-page-photo {
-  flex-shrink: 0;
-  width: clamp(200px, 28vw, 360px);
-  /* 4:6 = 2:3 aspect ratio */
-  aspect-ratio: 2 / 3;
-  border-radius: var(--radius);
+  flex: 0 0 42vw;
+  max-width: 46vw;
+  min-width: min(42vw, 540px);
+  height: calc(100vh - 80px);
+  margin: 0;
+  border-radius: 0;
   overflow: hidden;
   opacity: 0;
   transform: translateX(70px);
+  box-shadow: none;
   transition: opacity 0.9s ease 0.2s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
 }
 
@@ -499,8 +541,13 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   display: block;
+}
+
+.site-footer {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--page-text);
 }
 
 @media (max-width: 680px) {

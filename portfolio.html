@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Rainy Day Reels</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-btn" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="menu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="index.html#services-contact">Services &amp; Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-page gallery-page">
+    <div class="gallery-shell">
+      <header class="gallery-header">
+        <p class="gallery-eyebrow">Selected work</p>
+        <h1>Portfolio</h1>
+      </header>
+
+      <section id="real-estate" class="gallery-section" aria-label="Real Estate portfolio section">
+        <div class="gallery-section__label">
+          <span>01</span>
+          <h2>Real Estate</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--estate"><span>Property Story</span></div>
+          <div class="gallery-card gallery-card--estate alt"><span>Interior Light</span></div>
+          <div class="gallery-card gallery-card--estate dark"><span>Quiet Luxury</span></div>
+        </div>
+      </section>
+
+      <section id="interviews" class="gallery-section" aria-label="Interviews portfolio section">
+        <div class="gallery-section__label">
+          <span>02</span>
+          <h2>Interviews</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--interviews"><span>Conversation</span></div>
+          <div class="gallery-card gallery-card--interviews alt"><span>Portrait Focus</span></div>
+          <div class="gallery-card gallery-card--interviews dark"><span>Natural Pace</span></div>
+        </div>
+      </section>
+
+      <section id="weddings" class="gallery-section" aria-label="Weddings portfolio section">
+        <div class="gallery-section__label">
+          <span>03</span>
+          <h2>Weddings</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--weddings"><span>First Look</span></div>
+          <div class="gallery-card gallery-card--weddings alt"><span>Vows</span></div>
+          <div class="gallery-card gallery-card--weddings dark"><span>Evening Glow</span></div>
+        </div>
+      </section>
+
+      <section id="events" class="gallery-section" aria-label="Events portfolio section">
+        <div class="gallery-section__label">
+          <span>04</span>
+          <h2>Events</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--events"><span>Gathering</span></div>
+          <div class="gallery-card gallery-card--events alt"><span>Movement</span></div>
+          <div class="gallery-card gallery-card--events dark"><span>After Hours</span></div>
+        </div>
+      </section>
+
+      <section id="commercial" class="gallery-section" aria-label="Commercial portfolio section">
+        <div class="gallery-section__label">
+          <span>05</span>
+          <h2>Commercial</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--portfolio"><span>Brand Story</span></div>
+          <div class="gallery-card gallery-card--portfolio alt"><span>Product Motion</span></div>
+          <div class="gallery-card gallery-card--portfolio dark"><span>Campaign Cut</span></div>
+        </div>
+      </section>
+
+      <section id="documentary" class="gallery-section" aria-label="Documentary portfolio section">
+        <div class="gallery-section__label">
+          <span>06</span>
+          <h2>Documentary</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--tbd"><span>Field Notes</span></div>
+          <div class="gallery-card gallery-card--tbd alt"><span>Portraits</span></div>
+          <div class="gallery-card gallery-card--tbd dark"><span>Human Story</span></div>
+        </div>
+      </section>
+
+      <section id="travel" class="gallery-section" aria-label="Travel portfolio section">
+        <div class="gallery-section__label">
+          <span>07</span>
+          <h2>Travel</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--tbd2"><span>Open Road</span></div>
+          <div class="gallery-card gallery-card--tbd2 alt"><span>Light &amp; Air</span></div>
+          <div class="gallery-card gallery-card--tbd2 dark"><span>Wide Frame</span></div>
+        </div>
+      </section>
+
+      <section id="editing" class="gallery-section" aria-label="Editing portfolio section">
+        <div class="gallery-section__label">
+          <span>08</span>
+          <h2>Editing</h2>
+        </div>
+        <div class="gallery-showcase">
+          <div class="gallery-card gallery-card--editing"><span>Shape &amp; Rhythm</span></div>
+          <div class="gallery-card gallery-card--editing alt"><span>Cut to Mood</span></div>
+          <div class="gallery-card gallery-card--editing dark"><span>Final Pass</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Venus Eyes — built with Cloudflare Pages.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

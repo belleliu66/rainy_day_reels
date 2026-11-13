@@ -209,8 +209,6 @@
           activeMedia.muted = true;
           activeMedia.playsInline = true;
           activeMedia.loop = this.isHovering;
-          activeMedia.currentTime = 0;
-          activeMedia.load();
           if (!this.isHovering) {
             activeMedia.onended = () => this.advanceIfNotHovering();
           }

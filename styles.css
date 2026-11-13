@@ -301,6 +301,14 @@ a:hover {
   max-width: 720px;
 }
 
+.banner--artwork .banner__overlay {
+  width: 100vw;
+  max-width: none;
+  padding: 0;
+  justify-items: center;
+  align-content: center;
+}
+
 .banner__link {
   position: absolute;
   inset: 0;
@@ -317,9 +325,9 @@ a:hover {
 }
 
 .artwork-mosaic {
-  --mosaic-gap: 0.65rem;
-  --mosaic-cell-by-width: calc((min(92vw, 1300px) - (4 * var(--mosaic-gap))) / 5);
-  --mosaic-cell-by-height: calc((70vh - (2 * var(--mosaic-gap))) / 3);
+  --mosaic-gap: 0.55rem;
+  --mosaic-cell-by-width: calc((min(98vw, 1600px) - (4 * var(--mosaic-gap))) / 5);
+  --mosaic-cell-by-height: calc((80vh - (2 * var(--mosaic-gap))) / 3);
   --mosaic-cell: min(var(--mosaic-cell-by-width), var(--mosaic-cell-by-height));
   display: grid;
   grid-template-columns: repeat(5, var(--mosaic-cell));
@@ -327,7 +335,7 @@ a:hover {
   gap: var(--mosaic-gap);
   width: calc((5 * var(--mosaic-cell)) + (4 * var(--mosaic-gap)));
   height: calc((3 * var(--mosaic-cell)) + (2 * var(--mosaic-gap)));
-  margin-top: 0.6rem;
+  margin-top: 0;
   margin-inline: auto;
 }
 
@@ -351,7 +359,7 @@ a:hover {
 .artwork-mosaic-card span {
   position: absolute;
   left: 50%;
-  bottom: 0.9rem;
+  bottom: 0.55rem;
   transform: translateX(-50%);
   z-index: 1;
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
@@ -985,8 +993,8 @@ a:hover {
   }
 
   .artwork-mosaic {
-    --mosaic-cell-by-width: calc((96vw - (4 * var(--mosaic-gap))) / 5);
-    --mosaic-cell-by-height: calc((58vh - (2 * var(--mosaic-gap))) / 3);
+    --mosaic-cell-by-width: calc((98vw - (4 * var(--mosaic-gap))) / 5);
+    --mosaic-cell-by-height: calc((68vh - (2 * var(--mosaic-gap))) / 3);
     grid-template-columns: repeat(5, var(--mosaic-cell));
     grid-template-rows: repeat(3, var(--mosaic-cell));
   }

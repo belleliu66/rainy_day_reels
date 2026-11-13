@@ -37,12 +37,17 @@
           </div>
           <div class="carousel-item" data-type="video" data-duration-ms="10000">
             <video class="carousel-media" muted autoplay playsinline loop preload="auto">
-              <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/Aalan_Gasworks_15_45_15_52.mp4" type="video/mp4" />
+              <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/Nana%20Wall%20Video%202%2060%20sec%201st%20Revise_00_27_00_38.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="carousel-item" data-type="video" data-duration-ms="10000">
             <video class="carousel-media" muted autoplay playsinline loop preload="auto">
               <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/BGC_Company_2023_12_09_first_revision_00_13_00_23.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="carousel-item" data-type="video" data-duration-ms="10000">
+            <video class="carousel-media" muted autoplay playsinline loop preload="auto">
+              <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/TM%20Canyon%20Park_00_06_00_17.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -52,6 +57,7 @@
           <button class="carousel-indicator carousel-indicator--active" aria-label="Go to item 1" data-index="0"></button>
           <button class="carousel-indicator" aria-label="Go to item 2" data-index="1"></button>
           <button class="carousel-indicator" aria-label="Go to item 3" data-index="2"></button>
+          <button class="carousel-indicator" aria-label="Go to item 4" data-index="3"></button>
         </div>
       </div>
 
@@ -144,6 +150,8 @@
         this.currentIndex = 0;
         this.slideAdvanceTimeout = null;
         this.photoDurationMs = 5000;
+        this.advanceOnVideoEnd = true;
+        this.useTimedAdvance = false;
 
         this.init();
       }
@@ -172,7 +180,7 @@
         this.items.forEach((item, i) => {
           const media = item.querySelector('.carousel-media');
           if (media && media.tagName === 'VIDEO') {
-            media.loop = true;
+            media.loop = !this.advanceOnVideoEnd;
             media.onended = null;
             if (i !== index) {
               media.pause();
@@ -185,8 +193,10 @@
         if (activeMedia && activeMedia.tagName === 'VIDEO') {
           activeMedia.muted = true;
           activeMedia.playsInline = true;
-          activeMedia.loop = true;
-          activeMedia.onended = () => this.next();
+          activeMedia.loop = !this.advanceOnVideoEnd;
+          if (this.advanceOnVideoEnd) {
+            activeMedia.onended = () => this.next();
+          }
           const startVideo = () => {
             activeMedia.muted = true;
             activeMedia.play().catch(() => {});
@@ -198,7 +208,10 @@
           }
         }
 
-        this.scheduleTimedAdvance(this.items[index]);
+        const activeItem = this.items[index];
+        if (this.useTimedAdvance || activeItem?.dataset?.type === 'photo') {
+          this.scheduleTimedAdvance(activeItem);
+        }
         this.currentIndex = index;
       }
 

@@ -278,9 +278,77 @@ a:hover {
   color: rgba(255, 255, 255, 0.92);
 }
 
+.banner--equipment {
+  background: #c3b5a8;
+}
+
+.banner--equipment .banner__overlay {
+  width: min(92vw, 1100px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  text-align: left;
+  gap: 2rem;
+}
+
+.equipment-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.equipment-copy h2 {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(2.6rem, 5.9vw, 4.4rem);
+}
+
+.equipment-copy p {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.equipment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.8rem;
+  justify-items: start;
+}
+
+.equipment-list li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
+}
+
+.equipment-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .content-panel h1 {
   font-family: var(--font-display);
   text-transform: none;
+}
+
+@media (max-width: 760px) {
+  .banner--equipment .banner__overlay {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .equipment-copy,
+  .equipment-list {
+    justify-items: start;
+  }
 }
 
 .site-title .alt-letter {

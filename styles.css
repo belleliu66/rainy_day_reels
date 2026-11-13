@@ -17,7 +17,7 @@
 
 :root {
   --bg: #05060a;
-  --page-bg: #f6f2ec;
+  --page-bg: #f8f2e8;
   --page-panel: rgba(255, 255, 255, 0.5);
   --page-text: #1f1b17;
   --page-muted: rgba(35, 31, 28, 0.78);
@@ -317,17 +317,22 @@ a:hover {
 }
 
 .artwork-mosaic {
+  --mosaic-gap: 0.65rem;
+  --mosaic-cell-by-width: calc((min(92vw, 1300px) - (4 * var(--mosaic-gap))) / 5);
+  --mosaic-cell-by-height: calc((70vh - (2 * var(--mosaic-gap))) / 3);
+  --mosaic-cell: min(var(--mosaic-cell-by-width), var(--mosaic-cell-by-height));
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
-  width: min(92vw, 1120px);
-  max-width: 1120px;
+  grid-template-columns: repeat(5, var(--mosaic-cell));
+  grid-template-rows: repeat(3, var(--mosaic-cell));
+  gap: var(--mosaic-gap);
+  width: calc((5 * var(--mosaic-cell)) + (4 * var(--mosaic-gap)));
+  height: calc((3 * var(--mosaic-cell)) + (2 * var(--mosaic-gap)));
   margin-top: 0.6rem;
+  margin-inline: auto;
 }
 
 .artwork-mosaic-card {
   position: relative;
-  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 0.15rem;
   box-shadow: 0 16px 35px rgba(0, 0, 0, 0.24);
@@ -358,6 +363,13 @@ a:hover {
   text-align: center;
   white-space: nowrap;
   padding: 0;
+}
+
+.artwork-mosaic-placeholder {
+  border-radius: 0.15rem;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+  background-size: cover;
+  background-position: center;
 }
 
 .artwork-mosaic-card:hover {
@@ -406,12 +418,36 @@ a:hover {
   background-image: linear-gradient(135deg, #4f6877, #2f3940);
 }
 
+.artwork-mosaic-placeholder--left-1 {
+  background-image: linear-gradient(135deg, #8b7b70, #5d5249);
+}
+
+.artwork-mosaic-placeholder--right-1 {
+  background-image: linear-gradient(135deg, #4e6780, #2f3f54);
+}
+
+.artwork-mosaic-placeholder--left-2 {
+  background-image: linear-gradient(135deg, #758377, #4f5f4f);
+}
+
+.artwork-mosaic-placeholder--right-2 {
+  background-image: linear-gradient(135deg, #82636d, #5d4654);
+}
+
+.artwork-mosaic-placeholder--left-3 {
+  background-image: linear-gradient(135deg, #546273, #394858);
+}
+
+.artwork-mosaic-placeholder--right-3 {
+  background-image: linear-gradient(135deg, #6c655d, #4a453f);
+}
+
 .content-page.gallery-page {
   display: block;
   height: 100vh;
   overflow-y: auto;
   padding: 7rem 0 3rem;
-  background: #f5f1ea;
+  background: #f7efe4;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
 }
@@ -949,7 +985,10 @@ a:hover {
   }
 
   .artwork-mosaic {
-    grid-template-columns: 1fr;
+    --mosaic-cell-by-width: calc((96vw - (4 * var(--mosaic-gap))) / 5);
+    --mosaic-cell-by-height: calc((58vh - (2 * var(--mosaic-gap))) / 3);
+    grid-template-columns: repeat(5, var(--mosaic-cell));
+    grid-template-rows: repeat(3, var(--mosaic-cell));
   }
 
   .artwork-mosaic-card span {

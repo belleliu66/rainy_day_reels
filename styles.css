@@ -264,13 +264,13 @@ a:hover {
 }
 
 .brand-wordmark {
-  width: min(72vw, 1100px);
+  width: min(144vw, 2200px);
   max-width: 100%;
   height: auto;
   display: block;
   opacity: 0.96;
   filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.22));
-  transform: translateY(18px);
+  transform: translateY(-20px);
 }
 
 .banner__overlay h2 {

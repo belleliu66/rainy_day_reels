@@ -303,10 +303,12 @@ a:hover {
 
 .banner--artwork .banner__overlay {
   width: 100vw;
+  height: 100vh;
   max-width: none;
   padding: 0;
-  justify-items: center;
-  align-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .banner__link {
@@ -326,8 +328,8 @@ a:hover {
 
 .artwork-mosaic {
   --mosaic-gap: 0.55rem;
-  --mosaic-cell-by-width: calc((min(98vw, 1600px) - (4 * var(--mosaic-gap))) / 5);
-  --mosaic-cell-by-height: calc((80vh - (2 * var(--mosaic-gap))) / 3);
+  --mosaic-cell-by-width: calc((100vw - (4 * var(--mosaic-gap))) / 5);
+  --mosaic-cell-by-height: calc((100vh - (2 * var(--mosaic-gap))) / 3);
   --mosaic-cell: min(var(--mosaic-cell-by-width), var(--mosaic-cell-by-height));
   display: grid;
   grid-template-columns: repeat(5, var(--mosaic-cell));
@@ -335,8 +337,6 @@ a:hover {
   gap: var(--mosaic-gap);
   width: calc((5 * var(--mosaic-cell)) + (4 * var(--mosaic-gap)));
   height: calc((3 * var(--mosaic-cell)) + (2 * var(--mosaic-gap)));
-  margin-top: 0;
-  margin-inline: auto;
 }
 
 .artwork-mosaic-card {
@@ -993,8 +993,8 @@ a:hover {
   }
 
   .artwork-mosaic {
-    --mosaic-cell-by-width: calc((98vw - (4 * var(--mosaic-gap))) / 5);
-    --mosaic-cell-by-height: calc((68vh - (2 * var(--mosaic-gap))) / 3);
+    --mosaic-cell-by-width: calc((100vw - (4 * var(--mosaic-gap))) / 5);
+    --mosaic-cell-by-height: calc((100vh - (2 * var(--mosaic-gap))) / 3);
     grid-template-columns: repeat(5, var(--mosaic-cell));
     grid-template-rows: repeat(3, var(--mosaic-cell));
   }

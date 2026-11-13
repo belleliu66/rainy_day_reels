@@ -48,8 +48,7 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--text);
-  background: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 55%),
-    linear-gradient(170deg, #080a11 0%, #05060a 40%, #0b0b11 100%);
+  background: var(--page-bg);
   overflow-x: hidden;
 }
 
@@ -523,7 +522,7 @@ a:hover {
   max-width: 46vw;
   min-width: min(42vw, 540px);
   height: calc(100vh - 80px);
-  margin: 0;
+  margin: 0 0 0 auto;
   border-radius: 0;
   overflow: hidden;
   opacity: 0;

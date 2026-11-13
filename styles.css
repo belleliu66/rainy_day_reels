@@ -305,10 +305,37 @@ a:hover {
   width: 100vw;
   height: 100vh;
   max-width: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0 1.2rem 0 3.5rem;
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) auto;
+  align-items: stretch;
+  column-gap: 1.8rem;
+}
+
+.artwork-intro {
+  display: grid;
+  align-content: center;
+  gap: 1.1rem;
+  text-align: left;
+  max-width: 30rem;
+}
+
+.artwork-intro h2 {
+  margin: 0;
+  font-family: 'French', cursive;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  color: rgba(31, 27, 23, 0.95);
+  text-shadow: none;
+  letter-spacing: 0.03em;
+}
+
+.artwork-intro p {
+  margin: 0;
+  font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  line-height: 1.75;
+  color: rgba(31, 27, 23, 0.8);
+  max-width: 28rem;
 }
 
 .banner__link {
@@ -328,15 +355,16 @@ a:hover {
 
 .artwork-mosaic {
   --mosaic-gap: 0.55rem;
-  --mosaic-cell-by-width: calc((100vw - (4 * var(--mosaic-gap))) / 5);
+  --mosaic-cell-by-width: calc((74vw - (2 * var(--mosaic-gap))) / 3);
   --mosaic-cell-by-height: calc((100vh - (2 * var(--mosaic-gap))) / 3);
   --mosaic-cell: min(var(--mosaic-cell-by-width), var(--mosaic-cell-by-height));
   display: grid;
-  grid-template-columns: repeat(5, var(--mosaic-cell));
+  grid-template-columns: repeat(3, var(--mosaic-cell));
   grid-template-rows: repeat(3, var(--mosaic-cell));
   gap: var(--mosaic-gap);
-  width: calc((5 * var(--mosaic-cell)) + (4 * var(--mosaic-gap)));
+  width: calc((3 * var(--mosaic-cell)) + (2 * var(--mosaic-gap)));
   height: calc((3 * var(--mosaic-cell)) + (2 * var(--mosaic-gap)));
+  justify-self: end;
 }
 
 .artwork-mosaic-card {
@@ -993,10 +1021,27 @@ a:hover {
   }
 
   .artwork-mosaic {
-    --mosaic-cell-by-width: calc((100vw - (4 * var(--mosaic-gap))) / 5);
-    --mosaic-cell-by-height: calc((100vh - (2 * var(--mosaic-gap))) / 3);
-    grid-template-columns: repeat(5, var(--mosaic-cell));
+    --mosaic-cell-by-width: calc((100vw - 2.4rem - (2 * var(--mosaic-gap))) / 3);
+    --mosaic-cell-by-height: calc((62vh - (2 * var(--mosaic-gap))) / 3);
+    grid-template-columns: repeat(3, var(--mosaic-cell));
     grid-template-rows: repeat(3, var(--mosaic-cell));
+  }
+
+  .banner--artwork .banner__overlay {
+    padding: 4.5rem 1.2rem 1.2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 1rem;
+    align-content: start;
+    height: 100vh;
+  }
+
+  .artwork-intro {
+    max-width: none;
+  }
+
+  .artwork-intro h2 {
+    font-size: clamp(2.2rem, 7vw, 3.3rem);
   }
 
   .artwork-mosaic-card span {

@@ -1,30 +1,30 @@
-# Portfolio Site (Cloudflare Pages)
+# Rainy Day Reels
 
-A full-screen banner scroll portfolio template hosted on **Cloudflare Pages** with media served from **Cloudflare R2** (free tier).
+Portfolio website for Rainy Day Reels (videography, photography and editing).
 
-## 📦 What's Included
-- `index.html`: full-screen banner layout with hover menu and scroll sections
-- `styles.css`: styling for banners, menu, and animations
-- `about.html`, `artwork.html`, `services.html`, `contact.html`: linked pages
-- `media/`: placeholder images for upload to R2
+## How it's built
+- Plain static site: HTML pages plus one shared `styles.css`. No build step, no packages.
+- Hosted on **Cloudflare Pages**, deployed automatically from the `main` branch on GitHub. Anything pushed to `main` goes live. Every file in the repo is published, so don't commit private notes.
+- Videos and images are stored in **Cloudflare R2** and linked by their public URL:
+  `https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/<filename>` (encode spaces as `%20`).
 
-## ✅ How to Use
-1. **Create a GitHub repository** and commit this folder.
-2. **Deploy with Cloudflare Pages**:
-   - In Cloudflare Dashboard → **Pages** → Create project
-   - Connect your GitHub repo
-   - Set **Build command** empty and **Build output directory** to `.`
-3. **Upload media to R2**:
-   - Bucket name: `media`
-   - Upload files from `media/` folder (e.g., `hero-poster.png`)
-   - URLs will be: `https://173125ae54d69c4ba4e9f4992609de84.r2.cloudflarestorage.com/media/filename.png`
-4. **Replace placeholder content** in HTML files with your own text/images.
+## Pages
+| File | Content |
+|---|---|
+| `index.html` | Home: video carousel, About intro, Portfolio grid, Services & Contact |
+| `about.html` | Full About page |
+| `portfolio.html` | Portfolio by category, with links to sample videos |
+| `artwork.html`, `services.html`, `contact.html` | Redirects kept for old links (to the Portfolio page and the Services & Contact section) |
 
-## 🔄 Updating Your Portfolio
-- Edit `index.html` for banner content and links.
-- Add real images/videos to R2 bucket `media` and update URLs.
-- Each photo is an `<img>` block; each video is a `<video>` or embedded `<iframe>`.
+Fonts are in `fonts/`: **French** for the wordmark and page titles, **Indonesian** for section headings.
 
-## 📌 Notes
-- For best performance, keep images and videos reasonably sized (resize offline before uploading).
-- Cloudflare Pages serves the HTML/CSS; Cloudflare R2 stores your large media assets.
+## Adding media
+1. Export a short web clip: H.264 `.mp4`, up to 1080p, about 10 seconds, under ~15 MB, audio removed. Other codecs (MPEG-4 Part 2, HEVC, ProRes) show as blank tiles in most browsers.
+2. Upload it to the R2 bucket.
+3. Reference its R2 URL in the HTML. Never link to local files; they aren't deployed.
+
+## Preview locally
+```
+python3 -m http.server 8000
+```
+Then open http://localhost:8000/ and check desktop and mobile widths (the layout changes at 900px and 600px).

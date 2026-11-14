@@ -2,3 +2,6 @@
 media/
 /local/
 agents/
+# Claude Code project files (kept local; Cloudflare Pages would publish them)
+CLAUDE.md
+.claude/

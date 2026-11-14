@@ -373,9 +373,12 @@ a:hover {
   background: var(--page-bg);
 }
 
+/* Full screen like the hero and About sections; content is centered vertically by
+   .banner (display: grid; place-items: center). min-height (not height) lets the
+   section grow taller than the screen on phones instead of cutting content off. */
 .banner--portfolio,
 .banner--services-contact {
-  min-height: auto;
+  min-height: var(--banner-height);
 }
 
 .portfolio-overlay {

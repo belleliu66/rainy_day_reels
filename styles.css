@@ -411,6 +411,8 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-decoration: none;
+  white-space: nowrap; /* keep "See More Examples →" on one line */
+  flex-shrink: 0;
 }
 
 .portfolio-link:hover {
@@ -1076,8 +1078,11 @@ a:hover {
   color: var(--page-muted);
 }
 
+/* Photo on the left, text on the right (desktop). row-reverse keeps the text first
+   in the HTML, so screen readers and the stacked mobile layout still read text first. */
 .about-page-layout {
   display: flex;
+  flex-direction: row-reverse;
   align-items: stretch;
   gap: 0;
   width: 100%;
@@ -1136,7 +1141,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* Portrait flush to the right edge with no top/right/bottom margins */
+/* Portrait flush to the left edge with no top/left/bottom margins; slides in from the left */
 .about-page-photo {
   position: sticky;
   top: 0;
@@ -1148,7 +1153,7 @@ a:hover {
   border-radius: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateX(70px);
+  transform: translateX(-70px);
   box-shadow: none;
   transition: opacity 0.9s ease 0.2s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
   flex-shrink: 0;

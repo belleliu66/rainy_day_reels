@@ -1374,11 +1374,20 @@ a:hover {
 }
 
 .site-footer {
-  padding: 2.25rem 1.5rem;
+  padding: 0.7rem 1.5rem;
   text-align: center;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   background: rgba(0, 0, 0, 0.55);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* Home page: the footer is the last thing in the snap-scrolling area */
+.site-main .site-footer {
+  scroll-snap-align: end;
 }
 
 /* svh = screen height with the phone browser's address bar showing */

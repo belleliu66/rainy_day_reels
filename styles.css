@@ -381,58 +381,58 @@ a:hover {
   min-height: var(--banner-height);
 }
 
-/* Sizing: the video rows come first and stay 16:9 (no cropping). They are as wide as the
-   section allows, unless the screen is too short, in which case they shrink (still 16:9)
-   and leave side space. The title then gets whatever height is left over. */
+/* Split layout like About: text column on the left, scrolling video rows filling the
+   right. --left = width of the text column; --edge = space around the video block
+   (0 = flush to the section's top, bottom and right edges). */
 .portfolio-overlay {
+  --left: 33%;
+  --edge: 0px;
   --gap: 0.7rem;
-  --per-view: 3;                              /* clips visible across one row */
   --screen-h: 100vh;
-  --avail-w: calc(min(94vw, 1380px) - 3rem);  /* overlay width minus side padding */
-  --fixed-h: 6.7rem;                          /* padding 4.3 + title gap 1 + row gaps 1.4 */
-  --title-min: 56px;
-  --title-max: 130px;
-  --row-h: min(
-    calc((var(--avail-w) / var(--per-view) - var(--gap)) * 9 / 16),
-    calc((var(--screen-h) - var(--fixed-h) - var(--title-min)) / 3)
-  );
-  --title-h: clamp(var(--title-min), calc(var(--screen-h) - var(--fixed-h) - 3 * var(--row-h)), var(--title-max));
-  width: min(94vw, 1380px);
+  width: 100%;
   max-width: none;
-  padding: 2.8rem 1.5rem 1.5rem;
+  height: var(--screen-h);
+  padding: 0;
   display: grid;
-  gap: 1rem;
+  grid-template-columns: var(--left) minmax(0, 1fr);
+  gap: 0;
   text-align: left;
 }
 
-/* Three columns (empty | title | link) so the title sits on the true centre line
-   of the section, not shifted left by the link on the right. */
-.portfolio-header-row {
+.portfolio-text {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: end;
-  gap: 1rem;
-  /* Same width as the video rows, so the link lines up with the clips' right edge. */
-  justify-self: center;
-  width: calc(var(--per-view) * (var(--row-h) * 16 / 9 + var(--gap)) - var(--gap));
-  max-width: 100%;
+  align-content: center;
+  gap: 0.9rem;
+  padding: 2.8rem 2.2rem 2.8rem 3.2rem;
+  color: var(--dark-text);
+  min-width: 0;
 }
 
 .portfolio-title {
-  grid-column: 2;
-  margin: 0;
+  margin: 0 0 0.4rem;
   line-height: 0;
 }
 
+/* Sized to match the "About Me" heading: same font-size formula, and the PNG's
+   lowercase letters are ~0.48 of a font-size tall vs ~0.21 of the image height. */
 .portfolio-title-img {
   display: block;
-  height: var(--title-h);
+  height: calc(2.1 * clamp(2.6rem, 4.3vw, 4.1rem));
   width: auto;
+  max-width: 100%;
 }
 
-.portfolio-header-row .portfolio-link {
-  grid-column: 3;
-  justify-self: end;
+.portfolio-text p {
+  margin: 0;
+  font-size: clamp(0.82rem, 1.1vw, 1.02rem);
+  color: rgba(31, 27, 23, 0.84);
+  line-height: 1.55;
+  max-width: 460px;
+  font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+}
+
+.portfolio-text .portfolio-cta {
+  margin-top: 0.3rem;
 }
 
 .portfolio-link {
@@ -442,7 +442,6 @@ a:hover {
   letter-spacing: 0.03em;
   text-decoration: none;
   white-space: nowrap; /* keep the "Watch Full Videos →" link on one line */
-  flex-shrink: 0;
 }
 
 .portfolio-link:hover {
@@ -450,38 +449,38 @@ a:hover {
   opacity: 0.8;
 }
 
-/* Scrolling rows: each card is absolutely positioned and moved with a transform by the
-   script in index.html. --per-view = how many cards fit across one row; it must be
-   at most (cards per row - 1) so there's always a card ready to wrap in from the right. */
+/* Scrolling rows: three equal rows fill the right column's height. Each clip is as
+   tall as its row and 16:9 wide (the script in index.html sets the width and moves
+   the clips with transforms; a clip leaving on the left wraps round to the right). */
 .portfolio-marquee {
   display: grid;
-  gap: 0.7rem;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  margin: var(--edge) var(--edge) var(--edge) 0;
+  min-width: 0;
+  min-height: 0;
 }
 
-/* Each row is exactly --per-view clips wide, so every clip is 16:9. */
 .portfolio-row {
   position: relative;
   overflow: hidden;
-  justify-self: center;
-  width: calc(var(--per-view) * (var(--row-h) * 16 / 9 + var(--gap)));
-  max-width: 100%;
-  height: var(--row-h);
+  min-height: 0;
 }
 
 .portfolio-row .portfolio-video-card {
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100% / var(--per-view) - var(--gap));
   height: 100%;
+  width: auto;
+  aspect-ratio: 16 / 9;
   min-height: 0;
   will-change: transform;
 }
 
-/* Before the script runs (or without JS), lay cards out side by side. */
-.portfolio-marquee:not(.is-ready) .portfolio-row .portfolio-video-card:nth-child(2) { left: calc(100% / var(--per-view)); }
-.portfolio-marquee:not(.is-ready) .portfolio-row .portfolio-video-card:nth-child(3) { left: calc(200% / var(--per-view)); }
-.portfolio-marquee:not(.is-ready) .portfolio-row .portfolio-video-card:nth-child(4) { left: calc(300% / var(--per-view)); }
+/* Before the script runs (or without JS), lay clips out side by side. */
+.portfolio-marquee:not(.is-ready) .portfolio-row { display: flex; gap: var(--gap); }
+.portfolio-marquee:not(.is-ready) .portfolio-row .portfolio-video-card { position: relative; flex: 0 0 auto; }
 
 .portfolio-video-card {
   position: relative;
@@ -606,32 +605,26 @@ a:hover {
 }
 
 @media (max-width: 900px) {
-  .portfolio-overlay {
-    --per-view: 2;
-  }
-
   .services-contact-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .portfolio-header-row {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-
-  .portfolio-title,
-  .portfolio-header-row .portfolio-link {
-    grid-column: 1;
-    justify-self: center;
-  }
-
-  /* Title and link stack on phones: add the link line + its gap to the fixed height. */
+  /* Phones: stack the text above the video rows. */
   .portfolio-overlay {
-    --per-view: 1.6;
-    --fixed-h: 9.3rem;
-    --title-max: 100px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    --edge: 0px;
+  }
+
+  .portfolio-text {
+    padding: 4.5rem 1.5rem 1.2rem;
+    gap: 0.6rem;
+  }
+
+  .portfolio-marquee {
+    margin: 0 0 1rem;
   }
 }
 

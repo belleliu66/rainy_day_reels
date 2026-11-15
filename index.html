@@ -98,11 +98,14 @@
 
     <section class="banner banner--portfolio" id="portfolio">
       <div class="banner__overlay portfolio-overlay">
-        <div class="portfolio-header-row">
+        <!-- Left: title + short text + link. Right: the scrolling video rows. -->
+        <div class="portfolio-text">
           <h2 class="portfolio-title">
             <img class="portfolio-title-img" src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/portfolio_title.png" alt="Portfolio" />
           </h2>
-          <a href="portfolio.html" class="portfolio-link">Watch Full Videos <span>→</span></a>
+          <p>[Placeholder] A sentence or two about the work shown here: the kinds of projects, the feel of the footage, and what clients can expect.</p>
+          <p>[Placeholder] A second short line, e.g. an invitation to watch the full-length videos.</p>
+          <p class="portfolio-cta"><a href="portfolio.html" class="portfolio-link">Watch Full Videos <span>→</span></a></p>
         </div>
         <!-- 3 rows that scroll left on a loop (see script at the bottom). Each row's
              data-speed is in pixels per second; data-start offsets the row so the
@@ -330,12 +333,15 @@
         step: 0,
       }));
 
+      // Each clip is as tall as its row and 16:9 wide; step = one clip + the gap.
       const measure = () => {
+        const gap = parseFloat(getComputedStyle(marquee).rowGap) || 0;
         rows.forEach((row) => {
-          const perView = parseFloat(getComputedStyle(row.el).getPropertyValue('--per-view')) || 3;
           const oldStep = row.step;
-          row.step = row.el.clientWidth / perView;
+          const cardW = row.el.clientHeight * 16 / 9;
+          row.step = cardW ? cardW + gap : 0;
           if (!row.step) return; // not laid out yet; the ResizeObserver below will retry
+          row.cards.forEach((card) => { card.style.width = `${cardW}px`; });
           row.offset = oldStep ? row.offset * (row.step / oldStep) : row.start * row.step;
         });
       };

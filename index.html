@@ -100,13 +100,13 @@
       <div class="banner__overlay portfolio-overlay">
         <div class="portfolio-header-row">
           <h2 class="indonesian-title">Portfolio</h2>
-          <a href="portfolio.html" class="portfolio-link">See Complete Video Links <span>→</span></a>
+          <a href="portfolio.html" class="portfolio-link">Watch Full Videos <span>→</span></a>
         </div>
         <!-- 3 rows that scroll left on a loop (see script at the bottom). Each row's
              data-speed is in pixels per second; data-start offsets the row so the
              rows don't line up. Slots stay numbered 1–12 in reading order. -->
         <div class="portfolio-marquee" aria-label="Portfolio video examples">
-          <div class="portfolio-row" data-speed="28" data-start="0">
+          <div class="portfolio-row" data-speed="12" data-start="0">
           <article class="portfolio-video-card portfolio-video-card--featured">
             <video class="portfolio-video" muted autoplay playsinline loop preload="auto">
               <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/Aalan_Gasworks_15_45_15_52.mp4" type="video/mp4" />
@@ -120,7 +120,7 @@
           <article class="portfolio-video-card portfolio-video-card--three"></article>
           <article class="portfolio-video-card portfolio-video-card--four"></article>
           </div>
-          <div class="portfolio-row" data-speed="18" data-start="0.5">
+          <div class="portfolio-row" data-speed="8" data-start="0.5">
           <article class="portfolio-video-card portfolio-video-card--five">
             <video class="portfolio-video" muted autoplay playsinline loop preload="auto">
               <source src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/Camille_Promo_1_5_00_02_00_12.mp4" type="video/mp4" />
@@ -130,7 +130,7 @@
           <article class="portfolio-video-card portfolio-video-card--seven"></article>
           <article class="portfolio-video-card portfolio-video-card--eight"></article>
           </div>
-          <div class="portfolio-row" data-speed="36" data-start="0.25">
+          <div class="portfolio-row" data-speed="16" data-start="0.25">
           <article class="portfolio-video-card portfolio-video-card--nine"></article>
           <article class="portfolio-video-card portfolio-video-card--ten"></article>
           <article class="portfolio-video-card portfolio-video-card--eleven"></article>
@@ -318,14 +318,10 @@
       const marquee = document.querySelector('.portfolio-marquee');
       if (!marquee) return;
 
-      // Preview-only experiment: ?speeds=20,20,20 overrides the row speeds (px/sec).
-      const speedOverride = (new URLSearchParams(location.search).get('speeds') || '')
-        .split(',').map(Number).filter((n) => Number.isFinite(n) && n >= 0);
-
-      const rows = [...marquee.querySelectorAll('.portfolio-row')].map((el, i) => ({
+      const rows = [...marquee.querySelectorAll('.portfolio-row')].map((el) => ({
         el,
         cards: [...el.querySelectorAll('.portfolio-video-card')],
-        speed: speedOverride[i] ?? Number(el.dataset.speed || 25),
+        speed: Number(el.dataset.speed || 12),
         start: Number(el.dataset.start || 0),
         offset: 0,
         step: 0,

@@ -553,9 +553,23 @@ a:hover {
 
 .services-contact-header h2 {
   margin: 0;
-  color: rgba(255, 255, 255, 0.96);
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
-  text-align: center;
+  line-height: 0;
+  text-shadow: none;
+}
+
+/* Script title image (white on transparent), centred, with the old heading's soft
+   shadow. Width follows the old heading's font-size (about as wide as the text title
+   was); height is --squash of the image's natural proportions, so the tall script
+   letters are flattened a little. The PNG is 1827 x 650. */
+.services-contact-title-img {
+  --fs: clamp(2.6rem, 5vw, 4.2rem);
+  --squash: 0.8;
+  display: block;
+  margin: 0 auto;
+  width: calc(1.9 * var(--fs) * 1827 / 650);
+  height: calc(1.9 * var(--fs) * var(--squash));
+  max-width: 100%;
+  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.55));
 }
 
 .services-contact-grid {

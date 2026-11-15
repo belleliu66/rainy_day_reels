@@ -334,6 +334,7 @@
           const perView = parseFloat(getComputedStyle(row.el).getPropertyValue('--per-view')) || 3;
           const oldStep = row.step;
           row.step = row.el.clientWidth / perView;
+          if (!row.step) return; // not laid out yet; the ResizeObserver below will retry
           row.offset = oldStep ? row.offset * (row.step / oldStep) : row.start * row.step;
         });
       };
@@ -341,6 +342,7 @@
       const render = () => {
         rows.forEach((row) => {
           const total = row.step * row.cards.length;
+          if (!total) return;
           row.cards.forEach((card, i) => {
             // Positions run from -step (sliding out on the left) to total - step.
             const x = ((((i + 1) * row.step - row.offset) % total) + total) % total - row.step;
@@ -352,7 +354,9 @@
       measure();
       render();
       marquee.classList.add('is-ready');
-      window.addEventListener('resize', () => { measure(); render(); });
+      // Re-measure whenever a row changes size (window resize, late layout, etc.).
+      const resizeObserver = new ResizeObserver(() => { measure(); render(); });
+      rows.forEach((row) => resizeObserver.observe(row.el));
 
       // Respect "reduce motion": keep the staggered layout but don't move.
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -364,7 +368,7 @@
         const dt = Math.min((now - last) / 1000, 0.1);
         last = now;
         rows.forEach((row) => {
-          row.offset = (row.offset + row.speed * dt) % (row.step * row.cards.length);
+          if (row.step) row.offset = (row.offset + row.speed * dt) % (row.step * row.cards.length);
         });
         render();
         requestAnimationFrame(tick);

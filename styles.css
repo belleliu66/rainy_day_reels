@@ -1034,12 +1034,14 @@ a:hover {
   background: var(--page-bg);
 }
 
+/* Text block is centred (left-aligned lines) in the space left of the photo */
 .about-text {
   flex: 1 1 48%;
   display: grid;
   align-content: center;
+  justify-content: center;
   gap: 0.7rem;
-  padding: 2.8rem 2.2rem 2.8rem 3.2rem;
+  padding: 2.8rem 2.7rem;
   color: var(--dark-text);
   height: 100%;
 }
@@ -1067,7 +1069,7 @@ a:hover {
   font-size: clamp(0.82rem, 1.1vw, 1.02rem);
   color: rgba(31, 27, 23, 0.84);
   line-height: 1.55;
-  max-width: 520px;
+  max-width: 460px;
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 

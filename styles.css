@@ -407,7 +407,7 @@ a:hover {
 
 .portfolio-title-img {
   display: block;
-  height: clamp(96px, 12vw, 150px);
+  height: clamp(64px, 7.5vw, 100px);
   width: auto;
 }
 
@@ -439,11 +439,14 @@ a:hover {
   gap: 0.7rem;
 }
 
+/* Row height also depends on the screen height, so the whole Portfolio section (padding +
+   title + 3 rows) fits in one screen. 230px ≈ everything in the section except the rows. */
 .portfolio-row {
   --per-view: 3;
+  --section-chrome: 230px;
   position: relative;
   overflow: hidden;
-  height: clamp(140px, 24vh, 260px);
+  height: clamp(90px, calc((100vh - var(--section-chrome)) / 3), 260px);
 }
 
 .portfolio-row .portfolio-video-card {
@@ -586,7 +589,7 @@ a:hover {
 @media (max-width: 900px) {
   .portfolio-row {
     --per-view: 2;
-    height: clamp(130px, 26vw, 240px);
+    height: max(90px, min(26vw, calc((100vh - var(--section-chrome)) / 3)));
   }
 
   .services-contact-grid {
@@ -606,9 +609,13 @@ a:hover {
     justify-self: center;
   }
 
+  /* Title and link stack on phones, so more room goes to the header.
+     svh = the screen height with the browser's address bar showing. */
   .portfolio-row {
     --per-view: 1.6;
-    height: 33vw;
+    --section-chrome: 260px;
+    height: max(80px, min(33vw, calc((100vh - var(--section-chrome)) / 3)));
+    height: max(80px, min(33vw, calc((100svh - var(--section-chrome)) / 3)));
   }
 }
 

@@ -572,10 +572,23 @@ a:hover {
   filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.55));
 }
 
+/* Two boxes: Equipment | Pricing & Contact */
 .services-contact-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.2rem;
+}
+
+/* Second list in the Pricing & Contact box: a gap above to separate the contact lines */
+.services-contact-panel .services-contact-details {
+  margin-top: 1.6rem;
+}
+
+/* Email and phone are tappable but look like the other lines (only "Get a quote" is bold) */
+.services-contact-details a[href^="mailto:"],
+.services-contact-details a[href^="tel:"] {
+  font-weight: inherit;
+  color: inherit;
 }
 
 .services-contact-panel {
@@ -587,6 +600,7 @@ a:hover {
 
 .services-contact-panel h3 {
   margin: 0 0 0.9rem;
+  text-align: center;
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.96);
@@ -1455,14 +1469,15 @@ a:hover {
 }
 
 .contact-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 .contact-header h1 {
   margin: 0;
   font-family: 'French', cursive;
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-size: clamp(3.6rem, 6.5vw, 5.6rem);
+  line-height: 1.1;
   letter-spacing: 0.06em;
   color: var(--page-text);
 }

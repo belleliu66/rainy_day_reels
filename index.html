@@ -99,7 +99,9 @@
     <section class="banner banner--portfolio" id="portfolio">
       <div class="banner__overlay portfolio-overlay">
         <div class="portfolio-header-row">
-          <h2 class="indonesian-title">Portfolio</h2>
+          <h2 class="portfolio-title">
+            <img class="portfolio-title-img" src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/portfolio_title.png" alt="Portfolio" />
+          </h2>
           <a href="portfolio.html" class="portfolio-link">Watch Full Videos <span>→</span></a>
         </div>
         <!-- 3 rows that scroll left on a loop (see script at the bottom). Each row's
@@ -332,6 +334,7 @@
           const perView = parseFloat(getComputedStyle(row.el).getPropertyValue('--per-view')) || 3;
           const oldStep = row.step;
           row.step = row.el.clientWidth / perView;
+          if (!row.step) return; // not laid out yet; the ResizeObserver below will retry
           row.offset = oldStep ? row.offset * (row.step / oldStep) : row.start * row.step;
         });
       };
@@ -339,6 +342,7 @@
       const render = () => {
         rows.forEach((row) => {
           const total = row.step * row.cards.length;
+          if (!total) return;
           row.cards.forEach((card, i) => {
             // Positions run from -step (sliding out on the left) to total - step.
             const x = ((((i + 1) * row.step - row.offset) % total) + total) % total - row.step;
@@ -350,7 +354,9 @@
       measure();
       render();
       marquee.classList.add('is-ready');
-      window.addEventListener('resize', () => { measure(); render(); });
+      // Re-measure whenever a row changes size (window resize, late layout, etc.).
+      const resizeObserver = new ResizeObserver(() => { measure(); render(); });
+      rows.forEach((row) => resizeObserver.observe(row.el));
 
       // Respect "reduce motion": keep the staggered layout but don't move.
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -362,7 +368,7 @@
         const dt = Math.min((now - last) / 1000, 0.1);
         last = now;
         rows.forEach((row) => {
-          row.offset = (row.offset + row.speed * dt) % (row.step * row.cards.length);
+          if (row.step) row.offset = (row.offset + row.speed * dt) % (row.step * row.cards.length);
         });
         render();
         requestAnimationFrame(tick);

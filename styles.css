@@ -1239,6 +1239,19 @@ a:hover {
   letter-spacing: 0.04em;
 }
 
+/* "About Me" is an image (titles/about_me.png: French, letter-spacing 0.04em, thickened to
+   match the browser's bold heading), sized like the old text title — 1.38 × its font size tall. */
+.about-text h2.about-title {
+  line-height: 0;
+}
+
+.about-title-img {
+  display: block;
+  height: calc(1.383 * clamp(2.6rem, 4.3vw, 4.1rem));
+  width: auto;
+  max-width: 100%;
+}
+
 .about-intro {
   margin: 0;
   font-size: clamp(1.2rem, 1.7vw, 1.8rem);
@@ -1559,6 +1572,8 @@ a:hover {
   width: auto;
   max-width: 100%;
   margin: 0 auto;
+  /* The "t" crossbar trails far right, so the letters sit left of centre; nudge right. */
+  transform: translateX(8%);
 }
 
 .contact-header h1 {

@@ -1293,12 +1293,6 @@ a:hover {
 
 /* Cormorant for the About section text (title stays French). Sizes follow the smaller
    of the window's width and height, so the text also fits short laptop windows. */
-/* About title keeps the French script; no shadow on the cream background
-   (the shared heading shadow is meant for titles over video). */
-.banner--about .about-text h2.indonesian-title {
-  text-shadow: none;
-}
-
 .banner--about .about-text p.about-intro {
   font-family: var(--font-body);
   font-weight: 600;

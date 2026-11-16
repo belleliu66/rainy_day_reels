@@ -915,12 +915,25 @@ a:hover {
   outline-offset: 3px;
 }
 
+/* Without the script: plain CSS columns. With it (.is-masonry): the script builds
+   .work-col columns and places tiles by rank, so the wall reads across. */
 .work-wall {
-  list-style: none;
   margin: 0;
   padding: 0;
   columns: 3;
   column-gap: 1rem;
+}
+
+.work-wall.is-masonry {
+  columns: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.work-col {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .work-item {
@@ -1102,6 +1115,10 @@ a:hover {
 
   .work-wall {
     column-gap: 0.6rem;
+  }
+
+  .work-wall.is-masonry {
+    gap: 0.6rem;
   }
 
   .work-item {

@@ -1233,7 +1233,7 @@ a:hover {
   font-size: clamp(0.82rem, 1.1vw, 1.02rem);
   color: rgba(31, 27, 23, 0.84);
   line-height: 1.55;
-  max-width: 460px;
+  max-width: 540px;
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 

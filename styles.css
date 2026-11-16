@@ -15,6 +15,24 @@
   src: url('fonts/Indonesian.ttf') format('truetype');
 }
 
+/* Cormorant (body text). Variable fonts, latin subset, self-hosted.
+   SIL Open Font License 1.1 — see fonts/Cormorant/OFL.txt. */
+@font-face {
+  font-family: 'Cormorant';
+  src: url('fonts/Cormorant/Cormorant-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant';
+  src: url('fonts/Cormorant/Cormorant-Italic-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --bg: #05060a;
   --page-bg: #f8f2e8;
@@ -33,6 +51,7 @@
   --banner-height: 100vh;
   --font-sans: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
   --font-display: 'French', cursive;
+  --font-body: 'Cormorant', Georgia, 'Times New Roman', serif; /* reading text (paragraphs, lists) */
 }
 
 * {
@@ -424,11 +443,12 @@ a:hover {
 
 .portfolio-text p {
   margin: 0;
-  font-size: clamp(0.82rem, 1.1vw, 1.02rem);
-  color: rgba(31, 27, 23, 0.84);
-  line-height: 1.55;
+  font-size: clamp(0.88rem, min(1.12vw, 2vh), 1.1rem);
+  font-weight: 500;
+  color: rgba(31, 27, 23, 0.9);
+  line-height: 1.45;
   max-width: 460px;
-  font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  font-family: var(--font-body);
 }
 
 .portfolio-text .portfolio-cta {
@@ -634,9 +654,11 @@ a:hover {
 }
 
 .services-contact-panel li {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.88rem;
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(0.95rem, min(1.1vw, 2vh), 1.08rem);
+  line-height: 1.45;
 }
 
 .services-contact-panel li strong {
@@ -1266,7 +1288,7 @@ a:hover {
 }
 
 .banner--about .about-text p.about-intro {
-  font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
+  font-family: var(--font-body);
   font-weight: 600;
   font-style: italic;
   font-size: clamp(1.05rem, min(1.55vw, 2.7vh), 1.45rem);
@@ -1274,7 +1296,7 @@ a:hover {
 }
 
 .banner--about .about-text p {
-  font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: clamp(0.88rem, min(1.12vw, 2vh), 1.1rem);
   line-height: 1.45;

@@ -42,154 +42,149 @@
         <button type="button" class="work-filter" data-filter="landscape" aria-pressed="false">Landscape</button>
       </div>
 
-      <!-- The wall. Order here = order in "All" (read down each column).
-           Two kinds of tile (see /add-portfolio-page):
+      <!-- The wall. The script orders tiles by data-rank (5 = best, shown first), shuffles
+           a little on each visit, mixes shapes and groups, and packs them into columns.
+           Order here only matters if the script fails. Two kinds of tile (see /add-portfolio-page):
            - YouTube: data-kind="youtube", data-src = video ID, still from i.ytimg.com
            - Photo:   data-kind="photo",   data-src = R2 URL, data-alt = description -->
-      <ul class="work-wall">
-        <li class="work-item" data-groups="short-films">
+      <div class="work-wall">
+        <div class="work-item" data-groups="short-films" data-rank="3">
           <button type="button" class="work-tile" data-kind="youtube" data-src="j426kLJ23Ps" data-title="Grand Canyon: A Whole New Scale" aria-label="Play video: Grand Canyon: A Whole New Scale">
             <img src="https://i.ytimg.com/vi/j426kLJ23Ps/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Grand Canyon: A Whole New Scale</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="weddings">
+        </div>
+        <div class="work-item" data-groups="weddings" data-rank="5">
           <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC05393_web.jpg" data-alt="Bride holding a bouquet of white roses, smiling as she walks along the deck of a boat" aria-label="View photo: bride walking along the deck of a boat">
             <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC05393_web.jpg" alt="" width="1333" height="2000" loading="lazy" />
           </button>
-        </li>
-        <li class="work-item" data-groups="music-dance">
-          <button type="button" class="work-tile" data-kind="youtube" data-src="2hKsfqUq7gg" data-title="Salsa Performance at Sueños de Salsa" aria-label="Play video: Salsa Performance at Sueños de Salsa">
+        </div>
+        <div class="work-item" data-groups="music-dance" data-rank="5">
+          <button type="button" class="work-tile" data-kind="youtube" data-src="2hKsfqUq7gg" data-title="Salsa Mania at Sueños de Salsa" aria-label="Play video: Salsa Mania at Sueños de Salsa">
             <img src="https://i.ytimg.com/vi/2hKsfqUq7gg/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
-            <span class="work-title">Salsa Performance at Sueños de Salsa</span>
+            <span class="work-title">Salsa Mania at Sueños de Salsa</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="interviews">
+        </div>
+        <div class="work-item" data-groups="interviews" data-rank="2">
           <button type="button" class="work-tile" data-kind="youtube" data-src="NXDP7pFiND4" data-title="Hanieh, One Year Later" aria-label="Play video: Hanieh, One Year Later">
             <img src="https://i.ytimg.com/vi/NXDP7pFiND4/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Hanieh, One Year Later</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="real-estate">
+        </div>
+        <div class="work-item" data-groups="real-estate" data-rank="3">
           <button type="button" class="work-tile" data-kind="youtube" data-src="J4Vm8R0g29U" data-title="Newcastle Commons" aria-label="Play video: Newcastle Commons">
             <img src="https://i.ytimg.com/vi/J4Vm8R0g29U/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Newcastle Commons</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="weddings">
+        </div>
+        <div class="work-item" data-groups="weddings" data-rank="5">
           <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC04334_web.jpg" data-alt="Bride and groom smiling on the deck of a boat, with Gas Works Park behind them" aria-label="View photo: bride and groom on a boat with Gas Works Park behind them">
             <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC04334_web.jpg" alt="" width="2000" height="1333" loading="lazy" />
           </button>
-        </li>
-        <li class="work-item" data-groups="short-films">
+        </div>
+        <div class="work-item" data-groups="short-films" data-rank="3">
           <button type="button" class="work-tile" data-kind="youtube" data-src="WstW3F_Zu9c" data-title="Lava Falls, Grand Canyon" aria-label="Play video: Lava Falls, Grand Canyon">
             <img src="https://i.ytimg.com/vi/WstW3F_Zu9c/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Lava Falls, Grand Canyon</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="music-dance">
+        </div>
+        <div class="work-item" data-groups="music-dance" data-rank="1">
           <button type="button" class="work-tile" data-kind="youtube" data-src="w_UrNhbZZOc" data-title="Karina: Snow Queen" aria-label="Play video: Karina: Snow Queen">
             <img src="https://i.ytimg.com/vi/w_UrNhbZZOc/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Karina: Snow Queen</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="portrait">
+        </div>
+        <div class="work-item" data-groups="portrait" data-rank="3">
           <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/IMG_7696_web.jpg" data-alt="Black-and-white portrait of a tattooed man in a wide-brimmed hat and dark jacket" aria-label="View photo: black-and-white portrait of a man in a wide-brimmed hat">
             <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/IMG_7696_web.jpg" alt="" width="1319" height="1504" loading="lazy" />
           </button>
-        </li>
-        <li class="work-item" data-groups="interviews">
+        </div>
+        <div class="work-item" data-groups="interviews" data-rank="3">
           <button type="button" class="work-tile" data-kind="youtube" data-src="luw1g69OdN0" data-title="Interview" aria-label="Play video: Interview">
             <img src="https://i.ytimg.com/vi/luw1g69OdN0/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Interview</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="real-estate">
-          <button type="button" class="work-tile" data-kind="youtube" data-src="jIExrnv9EcE" data-title="Aspect at Totem Lake" aria-label="Play video: Aspect at Totem Lake">
+        </div>
+        <div class="work-item" data-groups="real-estate" data-rank="3">
+          <button type="button" class="work-tile" data-kind="youtube" data-src="jIExrnv9EcE" data-title="Aspect Apartments at Totem Lake" aria-label="Play video: Aspect Apartments at Totem Lake">
             <img src="https://i.ytimg.com/vi/jIExrnv9EcE/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
-            <span class="work-title">Aspect at Totem Lake</span>
+            <span class="work-title">Aspect Apartments at Totem Lake</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="weddings">
+        </div>
+        <div class="work-item" data-groups="weddings" data-rank="4">
           <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC05677_web.jpg" data-alt="Bride and groom raising glasses of red wine toward the camera, on the water" aria-label="View photo: bride and groom raising glasses of wine">
             <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC05677_web.jpg" alt="" width="2000" height="1333" loading="lazy" />
           </button>
-        </li>
-        <li class="work-item" data-groups="music-dance">
+        </div>
+        <div class="work-item" data-groups="music-dance" data-rank="4">
           <button type="button" class="work-tile" data-kind="youtube" data-src="MuyUZ31Ll7k" data-title="Salsa: Bring Your Own Partner" aria-label="Play video: Salsa: Bring Your Own Partner">
             <img src="https://i.ytimg.com/vi/MuyUZ31Ll7k/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Salsa: Bring Your Own Partner</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="landscape">
-          <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/IMG_7694_web.jpg" data-alt="Black-and-white photo of a paddleboarder on a river between towering canyon walls" aria-label="View photo: paddleboarder on a river between canyon walls">
+        </div>
+        <div class="work-item" data-groups="landscape" data-rank="5">
+          <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/IMG_7694_web.jpg" data-alt="Black-and-white photo of a paddleboarder on a river between towering canyon walls in the Grand Canyon" data-title="Award Winning Grand Canyon Photo" aria-label="View photo: Award Winning Grand Canyon Photo">
             <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/IMG_7694_web.jpg" alt="" width="1946" height="1320" loading="lazy" />
+            <span class="work-title">Award Winning Grand Canyon Photo</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="short-films">
+        </div>
+        <div class="work-item" data-groups="short-films" data-rank="1">
           <button type="button" class="work-tile" data-kind="youtube" data-src="2o89vzUMmMc" data-title="Mavic 3 Low-Light Test" aria-label="Play video: Mavic 3 Low-Light Test">
             <img src="https://i.ytimg.com/vi/2o89vzUMmMc/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Mavic 3 Low-Light Test</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="interviews">
-          <button type="button" class="work-tile" data-kind="youtube" data-src="eo9vfJICY9c" data-title="Interviews" aria-label="Play video: Interviews">
-            <img src="https://i.ytimg.com/vi/eo9vfJICY9c/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
-            <span class="work-play" aria-hidden="true"></span>
-            <span class="work-title">Interviews</span>
-          </button>
-        </li>
-        <li class="work-item" data-groups="real-estate">
+        </div>
+        <div class="work-item" data-groups="real-estate" data-rank="3">
           <button type="button" class="work-tile" data-kind="youtube" data-src="5I_8RhpHpUw" data-title="7006 1st Ave" aria-label="Play video: 7006 1st Ave">
             <img src="https://i.ytimg.com/vi/5I_8RhpHpUw/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">7006 1st Ave</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="weddings">
+        </div>
+        <div class="work-item" data-groups="weddings" data-rank="4">
           <button type="button" class="work-tile" data-kind="photo" data-src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC05315_web.jpg" data-alt="Close-up of a bride's engagement ring as she embraces the groom, holding white roses" aria-label="View photo: close-up of a bride's ring as she embraces the groom">
             <img src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/DSC05315_web.jpg" alt="" width="2000" height="1333" loading="lazy" />
           </button>
-        </li>
-        <li class="work-item" data-groups="music-dance">
-          <button type="button" class="work-tile" data-kind="youtube" data-src="cd7vGPVB70g" data-title="Ladies Styling: Salsa &amp; Bachata" aria-label="Play video: Ladies Styling: Salsa and Bachata">
+        </div>
+        <div class="work-item" data-groups="music-dance" data-rank="4">
+          <button type="button" class="work-tile" data-kind="youtube" data-src="cd7vGPVB70g" data-title="Ladies Styling with Camille" aria-label="Play video: Ladies Styling with Camille">
             <img src="https://i.ytimg.com/vi/cd7vGPVB70g/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
-            <span class="work-title">Ladies Styling: Salsa &amp; Bachata</span>
+            <span class="work-title">Ladies Styling with Camille</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="short-films">
-          <button type="button" class="work-tile" data-kind="youtube" data-src="om2NF4frMA8" data-title="Grand Canyon Rafting" aria-label="Play video: Grand Canyon Rafting">
+        </div>
+        <div class="work-item" data-groups="short-films" data-rank="4">
+          <button type="button" class="work-tile" data-kind="youtube" data-src="om2NF4frMA8" data-title="Grand Canyon: Greatest Place" aria-label="Play video: Grand Canyon: Greatest Place">
             <img src="https://i.ytimg.com/vi/om2NF4frMA8/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
-            <span class="work-title">Grand Canyon Rafting</span>
+            <span class="work-title">Grand Canyon: Greatest Place</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="real-estate">
+        </div>
+        <div class="work-item" data-groups="real-estate" data-rank="4">
           <button type="button" class="work-tile" data-kind="youtube" data-src="XSgGWR5WnmM" data-title="Canyon Park" aria-label="Play video: Canyon Park">
             <img src="https://i.ytimg.com/vi/XSgGWR5WnmM/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Canyon Park</span>
           </button>
-        </li>
-        <li class="work-item" data-groups="music-dance">
+        </div>
+        <div class="work-item" data-groups="music-dance" data-rank="4">
           <button type="button" class="work-tile" data-kind="youtube" data-src="O2588HwHLAA" data-title="Live Stream" aria-label="Play video: Live Stream">
             <img src="https://i.ytimg.com/vi/O2588HwHLAA/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" />
             <span class="work-play" aria-hidden="true"></span>
             <span class="work-title">Live Stream</span>
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -212,26 +207,85 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     (() => {
+      const wall = document.querySelector('.work-wall');
+      const items = [...wall.querySelectorAll('.work-item')];
       const filters = [...document.querySelectorAll('.work-filter')];
-      const items = [...document.querySelectorAll('.work-item')];
       const viewer = document.querySelector('.work-viewer');
       const stage = viewer.querySelector('.work-viewer__stage');
       const caption = viewer.querySelector('.work-viewer__caption');
+      const threeCols = window.matchMedia('(min-width: 901px)');
       let current = 0;
       let opener = null;
 
-      // Filters: show items whose data-groups contains the chosen filter.
+      // What each tile looks like: its rank, shape (from the image's width/height) and main group.
+      const info = new Map(items.map((el) => {
+        const img = el.querySelector('img');
+        const ratio = Number(img.getAttribute('height')) / Number(img.getAttribute('width'));
+        const kind = el.querySelector('.work-tile').dataset.kind;
+        const shape = ratio > 1.2 ? 'tall' : ratio > 0.8 ? 'square' : kind === 'youtube' ? 'video' : 'wide-photo';
+        return [el, { rank: Number(el.dataset.rank) || 3, ratio, shape, group: el.dataset.groups.split(' ')[0] }];
+      }));
+
+      // Order: highest rank first, shuffled a little on every visit, and nudged so the same
+      // shape or the same group doesn't come up twice in a row (keeps the wall from looking stiff).
+      function arrange(list) {
+        const pool = list.map((el) => ({ el, ...info.get(el), jitter: Math.random() * 0.9 }));
+        const out = [];
+        while (pool.length) {
+          const prev = out[out.length - 1];
+          const prev2 = out[out.length - 2];
+          let best = 0;
+          let bestScore = -Infinity;
+          pool.forEach((p, i) => {
+            let score = p.rank + p.jitter;
+            if (prev && prev.shape === p.shape) score -= 0.8;
+            if (prev2 && prev2.shape === p.shape) score -= 0.4;
+            if (prev && prev.group === p.group) score -= 0.7;
+            if (score > bestScore) { bestScore = score; best = i; }
+          });
+          out.push(pool.splice(best, 1)[0]);
+        }
+        return out.map((p) => p.el);
+      }
+
+      const order = arrange(items);
+
+      // Masonry: place tiles in that order, each into the currently shortest column,
+      // so the wall reads across and the top row holds the highest-ranked work.
+      function layout() {
+        const n = threeCols.matches ? 3 : 2;
+        const cols = Array.from({ length: n }, () => {
+          const col = document.createElement('div');
+          col.className = 'work-col';
+          return col;
+        });
+        const heights = new Array(n).fill(0);
+        order.forEach((el) => {
+          if (el.hidden) { cols[0].append(el); return; }
+          const i = heights.indexOf(Math.min(...heights));
+          cols[i].append(el);
+          heights[i] += info.get(el).ratio + 0.06; // 0.06 ≈ the gap between tiles
+        });
+        wall.replaceChildren(...cols);
+        wall.classList.add('is-masonry');
+      }
+
+      layout();
+      threeCols.addEventListener('change', layout);
+
+      // Filters: show items whose data-groups contains the chosen filter, then re-pack the columns.
       filters.forEach((btn) => {
         btn.addEventListener('click', () => {
           const f = btn.dataset.filter;
           filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-          items.forEach((li) => {
-            li.hidden = f !== 'all' && !li.dataset.groups.split(' ').includes(f);
+          items.forEach((el) => {
+            el.hidden = f !== 'all' && !el.dataset.groups.split(' ').includes(f);
           });
+          layout();
         });
       });
 
-      const visibleTiles = () => items.filter((li) => !li.hidden).map((li) => li.querySelector('.work-tile'));
+      const visibleTiles = () => order.filter((el) => !el.hidden).map((el) => el.querySelector('.work-tile'));
 
       function show(tile) {
         stage.textContent = '';

@@ -1184,8 +1184,11 @@ a:hover {
   background: var(--page-bg);
 }
 
+/* Photo on the left, text on the right (desktop/tablet). row-reverse keeps the text first
+   in the HTML, so screen readers and the stacked phone layout still read text first. */
 .banner--about .banner__overlay.about-split {
   display: flex;
+  flex-direction: row-reverse;
   align-items: stretch;
   justify-content: space-between;
   gap: 0;
@@ -1198,7 +1201,7 @@ a:hover {
   background: var(--page-bg);
 }
 
-/* Text block is centred (left-aligned lines) in the space left of the photo */
+/* Text block is centred (left-aligned lines) in the space right of the photo */
 .about-text {
   flex: 1 1 48%;
   display: grid;
@@ -1237,7 +1240,7 @@ a:hover {
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 
-/* Profile photo — fills right side flush to top and bottom */
+/* Profile photo — fills the left side flush to top and bottom; slides in from the left */
 .about-photo-wrap {
   flex: 0 0 46vw;
   max-width: 46vw;
@@ -1249,7 +1252,7 @@ a:hover {
   overflow: hidden;
   border-radius: 0;
   opacity: 0;
-  transform: translateX(70px);
+  transform: translateX(-70px);
   transition: opacity 0.9s ease 0.25s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.25s;
   flex-shrink: 0;
 }

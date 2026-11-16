@@ -363,9 +363,12 @@
     // ====== PORTFOLIO MARQUEE ======
     // Each row slides left forever. Cards are positioned with transforms; a card that
     // leaves on the left wraps around to the right, so every video exists (and loads) once.
+    // Press and hold a row to pause it; drag it to move it by hand; let go mid-drag to
+    // fling it — it glides, slows down, then returns to its normal speed.
     (() => {
       const marquee = document.querySelector('.portfolio-marquee');
       if (!marquee) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const rows = [...marquee.querySelectorAll('.portfolio-row')].map((el) => ({
         el,
@@ -374,6 +377,8 @@
         start: Number(el.dataset.start || 0),
         offset: 0,
         step: 0,
+        velocity: Number(el.dataset.speed || 12), // current px/s; eases back to `speed`
+        held: false,
       }));
 
       // Each clip is as tall as its row and 16:9 wide; step = one clip + the gap.
@@ -387,6 +392,12 @@
           row.cards.forEach((card) => { card.style.width = `${cardW}px`; });
           row.offset = oldStep ? row.offset * (row.step / oldStep) : row.start * row.step;
         });
+      };
+
+      // Keep the offset inside one loop of the row (works for negative values too).
+      const wrap = (row) => {
+        const total = row.step * row.cards.length;
+        if (total) row.offset = ((row.offset % total) + total) % total;
       };
 
       const render = () => {
@@ -408,8 +419,58 @@
       const resizeObserver = new ResizeObserver(() => { measure(); render(); });
       rows.forEach((row) => resizeObserver.observe(row.el));
 
-      // Respect "reduce motion": keep the staggered layout but don't move.
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // ---- Hold / drag / fling (per row) ----
+      const MAX_FLING = 4000; // px/s
+      rows.forEach((row) => {
+        let pointerId = null;
+        let lastX = 0;
+        let lastT = 0;
+        let dragVelocity = 0;
+
+        row.el.addEventListener('pointerdown', (e) => {
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          if (e.pointerType === 'mouse') e.preventDefault(); // no text/image dragging
+          pointerId = e.pointerId;
+          try { row.el.setPointerCapture(pointerId); } catch (err) { /* keep working without capture */ }
+          row.held = true;
+          row.velocity = 0;
+          dragVelocity = 0;
+          lastX = e.clientX;
+          lastT = performance.now();
+          row.el.classList.add('is-grabbing');
+        });
+
+        row.el.addEventListener('pointermove', (e) => {
+          if (!row.held || e.pointerId !== pointerId) return;
+          const now = performance.now();
+          const dx = e.clientX - lastX;
+          const dt = Math.max((now - lastT) / 1000, 0.001);
+          row.offset -= dx; // drag right → clips move right
+          wrap(row);
+          // Smoothed drag speed (offset units per second) for the fling.
+          dragVelocity = 0.7 * (-dx / dt) + 0.3 * dragVelocity;
+          lastX = e.clientX;
+          lastT = now;
+          render();
+        });
+
+        const release = (e, allowFling) => {
+          if (!row.held || e.pointerId !== pointerId) return;
+          row.held = false;
+          pointerId = null;
+          row.el.classList.remove('is-grabbing');
+          const stillMoving = performance.now() - lastT < 80; // finger/mouse was moving at release
+          row.velocity = allowFling && stillMoving && !reduceMotion
+            ? Math.max(-MAX_FLING, Math.min(MAX_FLING, dragVelocity))
+            : 0;
+        };
+        row.el.addEventListener('pointerup', (e) => release(e, true));
+        // The browser took over (e.g. the visitor scrolled the page vertically): just let go.
+        row.el.addEventListener('pointercancel', (e) => release(e, false));
+      });
+
+      // Respect "reduce motion": no automatic movement or fling (dragging still works).
+      if (reduceMotion) return;
 
       let running = false;
       let last = 0;
@@ -418,7 +479,11 @@
         const dt = Math.min((now - last) / 1000, 0.1);
         last = now;
         rows.forEach((row) => {
-          if (row.step) row.offset = (row.offset + row.speed * dt) % (row.step * row.cards.length);
+          if (!row.step || row.held) return;
+          // Ease the current velocity back toward the row's normal speed (fling decays).
+          row.velocity += (row.speed - row.velocity) * (1 - Math.exp(-2.2 * dt));
+          row.offset += row.velocity * dt;
+          wrap(row);
         });
         render();
         requestAnimationFrame(tick);

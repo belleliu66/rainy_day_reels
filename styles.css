@@ -482,6 +482,23 @@ a:hover {
 .portfolio-marquee:not(.is-ready) .portfolio-row { display: flex; gap: var(--gap); }
 .portfolio-marquee:not(.is-ready) .portfolio-row .portfolio-video-card { position: relative; flex: 0 0 auto; }
 
+/* Rows can be held (pause) and dragged/flung (see script in index.html).
+   touch-action: pan-y keeps up/down swipes scrolling the page on phones. */
+.portfolio-marquee.is-ready .portfolio-row {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.portfolio-marquee.is-ready .portfolio-row.is-grabbing {
+  cursor: grabbing;
+}
+
+.portfolio-marquee.is-ready .portfolio-video {
+  pointer-events: none; /* let presses reach the row, never the video */
+}
+
 .portfolio-video-card {
   position: relative;
   display: block;

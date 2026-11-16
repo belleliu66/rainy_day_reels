@@ -1282,7 +1282,7 @@ a:hover {
   display: block;
 }
 
-/* ====== ABOUT PAGE — standalone about.html ====== */
+/* ====== INNER PAGES (portfolio, contact, redirects) ====== */
 .content-page {
   min-height: 100vh;
   padding: 0;
@@ -1292,10 +1292,6 @@ a:hover {
   background: var(--page-bg);
   color: var(--page-text);
   overflow: visible;
-}
-
-.about-page-main {
-  overflow: hidden;
 }
 
 .content-panel {
@@ -1309,119 +1305,23 @@ a:hover {
 }
 
 .content-panel h1,
-.about-page-text h1,
 .content-panel p,
-.content-panel li,
-.about-page-text p,
-.about-page-text .about-draft-note,
-.about-page-text a {
+.content-panel li {
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 
-.content-panel h1,
-.about-page-text h1 {
+.content-panel h1 {
   color: var(--page-text);
 }
 
 .content-panel p,
-.content-panel li,
-.about-page-text p,
-.about-page-text .about-draft-note {
+.content-panel li {
   color: var(--page-muted);
 }
 
-/* Photo on the left, text on the right (desktop). row-reverse keeps the text first
-   in the HTML, so screen readers and the stacked mobile layout still read text first. */
-.about-page-layout {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: stretch;
-  gap: 0;
-  width: 100%;
-  height: 100vh;
-  min-height: 100vh;
-}
-
-.about-page-text {
-  flex: 1 1 48%;
-  display: grid;
-  gap: 1.2rem;
-  padding: 3.5rem 3rem 2rem 3rem;
-  box-sizing: border-box;
-  align-content: start;
-  overflow-y: auto;
-  max-height: 100vh;
-  scrollbar-width: thin;
-}
-
-.about-page-text h1 {
-  margin: 0;
-  font-family: 'French', cursive;
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
-  letter-spacing: 0.06em;
-}
-
-.about-page-text p {
-  margin: 0;
-  font-size: 1.05rem;
-  color: var(--page-muted);
-  line-height: 1.8;
-  max-width: 560px;
-}
-
-.about-page-text .about-draft-note {
-  padding: 0.7rem 0.85rem;
-  border-left: 3px solid var(--accent);
-  background: rgba(59, 130, 246, 0.08);
-  color: var(--page-text);
-  font-size: 0.9rem;
-}
-
-.about-page-text a {
-  color: var(--page-text);
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  transition: opacity 200ms ease;
-}
-
+/* "Home →" link (contact page) */
 .home-back-link {
   margin-top: 0.5rem;
-}
-
-.about-page-text a:hover {
-  opacity: 0.7;
-  text-decoration: none;
-}
-
-/* Portrait flush to the left edge with no top/left/bottom margins; slides in from the left */
-.about-page-photo {
-  position: sticky;
-  top: 0;
-  flex: 0 0 46vw;
-  max-width: 46vw;
-  min-width: 0;
-  height: 100vh;
-  margin: 0;
-  border-radius: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateX(-70px);
-  box-shadow: none;
-  transition: opacity 0.9s ease 0.2s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
-  flex-shrink: 0;
-}
-
-.about-page-photo.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.about-page-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
 }
 
 .site-footer {
@@ -1429,25 +1329,30 @@ a:hover {
   color: var(--page-text);
 }
 
+/* Phones: the section grows with its text (no fixed screen height), and the photo
+   sits below the text at full width in its natural landscape shape. */
 @media (max-width: 680px) {
   .banner--about .banner__overlay.about-split {
     flex-direction: column;
-    padding: 5rem 1.5rem;
+    height: auto;
+    min-height: 100vh;
+    padding: 5rem 1.5rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .about-text {
+    height: auto;
+    padding: 0;
+    justify-content: start;
   }
 
   .about-photo-wrap {
-    width: 60vw;
-    align-self: center;
-    min-height: 240px;
-  }
-
-  .about-page-layout {
-    flex-direction: column;
-  }
-
-  .about-page-photo {
-    width: 60vw;
-    align-self: center;
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    align-self: stretch;
   }
 }
 

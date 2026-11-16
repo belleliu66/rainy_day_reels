@@ -1257,14 +1257,12 @@ a:hover {
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 
-/* Cormorant in the About section (heading + text). Sizes follow the smaller of the
-   window's width and height, so the text also fits short laptop windows. */
+/* Cormorant for the About section text (title stays French). Sizes follow the smaller
+   of the window's width and height, so the text also fits short laptop windows. */
+/* About title keeps the French script; no shadow on the cream background
+   (the shared heading shadow is meant for titles over video). */
 .banner--about .about-text h2.indonesian-title {
-  font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
-  font-weight: 400;
-  font-size: clamp(2.2rem, min(4vw, 7vh), 3.9rem);
-  line-height: 1;
-  letter-spacing: 0.02em;
+  text-shadow: none;
 }
 
 .banner--about .about-text p.about-intro {

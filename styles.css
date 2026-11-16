@@ -858,20 +858,26 @@ a:hover {
   scroll-snap-align: none;
 }
 
-.gallery-eyebrow {
-  margin: 0 0 0.6rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(31, 27, 23, 0.7);
-}
-
 .gallery-page h1 {
   margin: 0;
   font-family: 'French', cursive;
   font-size: clamp(2.8rem, 5vw, 4.2rem);
   color: var(--page-text);
   text-align: center;
+}
+
+/* Portfolio page title: the same script image as the home Portfolio section.
+   Height uses the home formula (2.1 × font-size) so it matches the old text title's size. */
+.gallery-page h1.gallery-title {
+  line-height: 0;
+}
+
+.gallery-title-img {
+  display: block;
+  height: calc(2.1 * clamp(2.8rem, 5vw, 4.2rem));
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* ====== PORTFOLIO PAGE — mixed wall (portfolio.html) ======

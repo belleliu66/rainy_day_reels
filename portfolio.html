@@ -26,20 +26,21 @@
   <main class="content-page gallery-page">
     <div class="gallery-shell">
       <header class="gallery-header">
-        <p class="gallery-eyebrow">Selected work</p>
-        <h1>Portfolio</h1>
+        <h1 class="gallery-title">
+          <img class="gallery-title-img" src="https://pub-b90a8e956c8f4cb28ee9d0205af29830.r2.dev/portfolio_title_bold_1.png" alt="Portfolio" />
+        </h1>
       </header>
 
-      <!-- Filter buttons. Each data-filter matches a word in the tiles' data-groups. -->
+      <!-- Filter buttons: "All" first, the rest A–Z. Each data-filter matches a word in the tiles' data-groups. -->
       <div class="work-filters" role="group" aria-label="Filter portfolio">
         <button type="button" class="work-filter" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="work-filter" data-filter="music-dance" aria-pressed="false">Music/Dance</button>
         <button type="button" class="work-filter" data-filter="interviews" aria-pressed="false">Interviews</button>
+        <button type="button" class="work-filter" data-filter="landscape" aria-pressed="false">Landscape</button>
+        <button type="button" class="work-filter" data-filter="music-dance" aria-pressed="false">Music/Dance</button>
+        <button type="button" class="work-filter" data-filter="portrait" aria-pressed="false">Portrait</button>
+        <button type="button" class="work-filter" data-filter="real-estate" aria-pressed="false">Real Estate</button>
         <button type="button" class="work-filter" data-filter="short-films" aria-pressed="false">Short Films</button>
         <button type="button" class="work-filter" data-filter="weddings" aria-pressed="false">Weddings</button>
-        <button type="button" class="work-filter" data-filter="real-estate" aria-pressed="false">Real Estate</button>
-        <button type="button" class="work-filter" data-filter="portrait" aria-pressed="false">Portrait</button>
-        <button type="button" class="work-filter" data-filter="landscape" aria-pressed="false">Landscape</button>
       </div>
 
       <!-- The wall. The script orders tiles by data-rank (5 = best, shown first), shuffles

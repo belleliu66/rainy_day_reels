@@ -1237,21 +1237,6 @@ a:hover {
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 
-.about-text .about-cta a {
-  display: inline-block;
-  margin-top: 0.2rem;
-  color: var(--page-text);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  transition: opacity 200ms ease;
-}
-
-.about-cta a:hover {
-  opacity: 0.7;
-  text-decoration: none;
-}
-
 /* Profile photo — fills right side flush to top and bottom */
 .about-photo-wrap {
   flex: 0 0 46vw;

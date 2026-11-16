@@ -1257,12 +1257,12 @@ a:hover {
   font-family: "Heiti TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 
-/* Cormorant in the About section (heading + text). Cormorant has a small x-height,
-   so it is set a little larger than the sans-serif it replaces. */
+/* Cormorant in the About section (heading + text). Sizes follow the smaller of the
+   window's width and height, so the text also fits short laptop windows. */
 .banner--about .about-text h2.indonesian-title {
   font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 400;
-  font-size: clamp(2.8rem, 4.6vw, 4.4rem);
+  font-size: clamp(2.2rem, min(4vw, 7vh), 3.9rem);
   line-height: 1;
   letter-spacing: 0.02em;
 }
@@ -1271,15 +1271,15 @@ a:hover {
   font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 600;
   font-style: italic;
-  font-size: clamp(1.25rem, 1.75vw, 1.6rem);
+  font-size: clamp(1.05rem, min(1.55vw, 2.7vh), 1.45rem);
   color: rgba(31, 27, 23, 0.96);
 }
 
 .banner--about .about-text p {
   font-family: 'Cormorant', Georgia, 'Times New Roman', serif;
   font-weight: 500;
-  font-size: clamp(1rem, 1.32vw, 1.22rem);
-  line-height: 1.5;
+  font-size: clamp(0.88rem, min(1.12vw, 2vh), 1.1rem);
+  line-height: 1.45;
   color: rgba(31, 27, 23, 0.9);
 }
 
